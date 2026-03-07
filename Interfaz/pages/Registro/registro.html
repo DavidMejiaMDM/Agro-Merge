@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro - Agro-Merge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+	<link href="../../eCommerceAssets/styles/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="styles-layout">
+    <main class="styles-panel">
+      <header class="styles-panel__header">
+        <div class="logo">
+          <img src="../../eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
+          <span class="logo__text">Agro-Merge</span>
+        </div>
+      </header>
+
+      <section class="styles-panel__body">
+        <h1 class="styles-title">Crea tu cuenta</h1>
+        <p class="styles-subtitle">Regístrate y empieza a comprar.</p>
+
+        <div class="role-tabs">
+          <input type="radio" id="tab-comprador" name="rol" checked />
+          <input type="radio" id="tab-vendedor" name="rol" />
+          <input type="radio" id="tab-empresa" name="rol" />
+
+          <div class="role-tabs__headers">
+            <label for="tab-comprador" class="role-tabs__tab">Comprador</label>
+            <label for="tab-vendedor" class="role-tabs__tab">Vendedor</label>
+            <label for="tab-empresa" class="role-tabs__tab">Empresa</label>
+          </div>
+
+          <div class="role-tabs__content">
+            <!-- Comprador -->
+            <div class="role-pane role-pane--comprador">
+              <form class="form" action="http://localhost:3000/registro" method="POST">
+                
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" name="nombre_usuario" placeholder="Nombre completo" required />
+                </div>
+
+                <div class="form-group">
+                  <label>Tipo Documento</label>
+                  <input type="text" placeholder="Cédula Ciudadanía" />
+                </div>
+
+                <div class="form-group">
+                  <label>Documento</label>
+                  <input type="text" placeholder="0123456789" />
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label>Celular</label>
+                    <input type="text" placeholder="+57" />
+                  </div>
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <input type="tel" placeholder="3137777777" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Correo</label>
+                  <input type="email" name="correo_usuario" placeholder="usuario@gmail.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label>Contraseña</label>
+                  <input type="password" name="clave_usuario" placeholder="********" required />
+                </div>
+
+                <div class="form-group">
+                  <label>Verificar Contraseña</label>
+                  <input type="password" placeholder="********" required />
+                </div>
+
+                <button type="submit" class="btn btn--primary">
+                  Registrarse
+                </button>
+
+                <p class="styles-footer-text">
+                  ¿Ya tienes una cuenta?
+                  <a href="../Login/login.html" class="link">Inicia sesión</a>
+                </p>
+              </form>
+            </div>
+
+            <!-- Vendedor -->
+            <div class="role-pane role-pane--vendedor">
+              <form class="form" onsubmit="event.preventDefault();">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" placeholder="Nombre vendedor" />
+                </div>
+                <div class="form-group">
+                  <label>Documento</label>
+                  <input type="text" placeholder="0123456789" />
+                </div>
+                <div class="form-group">
+                  <label>Celular</label>
+                  <input type="tel" placeholder="+57 3000000000" />
+                </div>
+                <div class="form-group">
+                  <label>Correo</label>
+                  <input type="email" placeholder="usuario@gmail.com" />
+                </div>
+                <div class="form-group">
+                  <label>Contraseña</label>
+                  <input type="password" placeholder="********" />
+                </div>
+                <div class="form-group">
+                  <label>Verificar Contraseña</label>
+                  <input type="password" placeholder="********" />
+                </div>
+                <button type="button" class="btn btn--primary" onclick="window.location.href='vendedor-perfil-1.html';">
+                  Registrarse como vendedor
+                </button>
+              </form>
+            </div>
+
+            <!-- Empresa -->
+            <div class="role-pane role-pane--empresa">
+              <form class="form">
+                <div class="form-group">
+                  <label>Nombre de la empresa</label>
+                  <input type="text" placeholder="Razón social" />
+                </div>
+                <div class="form-group">
+                  <label>NIT</label>
+                  <input type="text" placeholder="900123456" />
+                </div>
+                <div class="form-group">
+                  <label>Correo</label>
+                  <input type="email" placeholder="contacto@empresa.com" />
+                </div>
+                <div class="form-group">
+                  <label>Celular</label>
+                  <input type="tel" placeholder="+57 3000000000" />
+                </div>
+                <div class="form-group">
+                  <label>Contraseña</label>
+                  <input type="password" placeholder="********" />
+                </div>
+                <div class="form-group">
+                  <label>Verificar Contraseña</label>
+                  <input type="password" placeholder="********" />
+                </div>
+                <button type="submit" class="btn btn--primary">
+                  Registrarse como empresa
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="styles-panel__footer">
+        <span>Todos los derechos reservados © Agromerge</span>
+        <span>Política de Privacidad</span>
+      </footer>
+    </main>
+
+    <aside class="styles-image"></aside>
+  </div>
+</body>
+</html>

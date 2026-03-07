@@ -1,0 +1,387 @@
+@charset "utf-8";
+
+/* ================= RESET Y GLOBALES ================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', 'Segoe UI', sans-serif; 
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #22c55e;
+}
+
+body {
+    background-color: #f8f9fa; 
+}
+
+/* ================= WRAPPER PRINCIPAL ================= */
+
+#mainWrapper {
+  width: 1320px; 
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+
+header {
+  font-size: 15px;
+  color: #929292;
+  background: #ffffff;
+  padding: 15px 40px;
+  border-radius: 20px;
+  margin-top: 20px; 
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+#logo {
+  width: 139px;
+  text-align: center;
+  background: #bebebe;
+  color: white;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+#headerLinks {
+  display: flex;
+  gap: 20px;
+}
+
+#headerLinks a {
+  color: #929292;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#headerLinks a:hover {
+    color: #22c55e;
+}
+
+.search-input {
+  width: 350px;
+  padding: 10px 25px;
+  border-radius: 50px;
+  border: 1px solid #22c55e;
+  outline: none;
+}
+
+/*== Logo ===*/
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo__circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #f3f6e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #3f6212;
+  font-size: 18px;
+}
+
+/* Imagen del logo */
+.logo__img {
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.logo__text {
+  font-weight: 600;
+  color: #111827;
+}
+
+#headerLinks {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+
+.search-container { position: relative; }
+.search-input {
+  width: 300px;
+  padding: 10px 40px 10px 20px;
+  border-radius: 50px;
+  border: 1px solid #e0e0e0;
+  background: #fcfcfc;
+  outline: none;
+  transition: var(--transition);
+}
+.search-input:focus {
+  width: 340px; 
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+.search-icon {
+  position: absolute; right: 15px; top: 50%;
+  transform: translateY(-50%); color: #aaa;
+}
+
+#headerLinks a {
+  font-size: 14px; font-weight: 600; color: #888;
+  display: flex; align-items: center; gap: 6px;
+}
+#headerLinks a:hover { color: var(--primary); transform: translateY(-2px); }
+
+
+/* ================= SECCIÓN DE CONTACTO  ================= */
+
+.contact-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-container {
+    width: 1320px;
+    max-width: 100%;
+    height: 665px; /* Altura fija solicitada */
+    background-color: #ffffff;
+    opacity: 1;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 50px 50px 30px 50px;
+    margin: 50px auto;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+    
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* Título Contacto */
+.contact-title {
+    text-align: center;
+    font-size: 32px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Iconos e Info */
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.info-item .icon {
+    font-size: 36px;
+    color: #7cb342;
+    margin-bottom: 5px;
+}
+
+.info-item h3 {
+    font-size: 16px;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.info-item p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.info-item a {
+    font-size: 14px;
+    color: #8bc34a;
+    font-weight: 500;
+}
+
+.info-item a:hover {
+    text-decoration: underline;
+}
+
+/* Formulario */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.form-row {
+    display: flex;
+    gap: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.input-group .required {
+    color: #7cb342;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid #dcedc8;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background: #fff;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: #7cb342;
+    box-shadow: 0 0 5px rgba(124, 179, 66, 0.2);
+}
+
+.input-group textarea {
+    resize: none;
+    height: 120px;
+    border-radius: 15px;
+}
+
+
+.form-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto; 
+}
+
+.form-submit button {
+    background-color: #7cb342;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit button:hover {
+    background-color: #689f38;
+}
+
+/* ================= BANNER FINAL ================= */
+
+.banner-final {
+  width: 100%;
+  height: 162px;
+  margin: 50px auto 100px auto;
+  background: #fff; /* Asegura fondo blanco */
+  border-radius: 10px; /* Un toque estético extra */
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  padding: 0 40px;
+  border: 1px solid #e5e5e5;
+}
+
+.banner-left h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #1a1a1a;
+}
+
+.banner-left p {
+  font-size: 14px;
+  color: #666;
+}
+
+.banner-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.suscripcion {
+  display: flex;
+  gap: 10px;
+}
+
+.suscripcion input {
+  width: 230px;
+  height: 40px;
+  padding: 0 15px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.btn-enviar {
+  height: 40px;
+  padding: 0 25px;
+  border-radius: 50px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background: #16a34a;
+}
+
+.redes {
+  display: flex;
+  gap: 18px;
+  font-size: 20px;
+  color: #555;
+}
+
+.redes i {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.redes i:hover {
+  color: #22c55e;
+}

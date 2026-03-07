@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Agro-Merger | Mercado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link href="../../eCommerceAssets/styles/productos.css.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="mainWrapper">
+    
+    <header> 
+        <div class="logo">
+          <img src="../../eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
+			<span class="logo__text">Agro-Merge</span>
+        </div>
+
+        <div id="headerLinks">
+            <a href="../../Index.html" title="Precios">Inicio</a>
+            <a href="#" title="Noticias">Noticias</a>
+            <a href="../Contactos/Contactos.html">Contacto</a>
+        </div>
+            
+        <input type="search" placeholder="Buscar un producto..." class="search-input">
+        
+        <a href="../Login/login.html" title="Login"><i class="fa-regular fa-user"></i> Iniciar Sesión</a>
+    </header>
+    
+    <section class="market-wrapper">
+
+        <aside class="filters">
+            <h3>Filtros</h3>
+
+            <div class="filter-group">
+                <label>Buscar Producto</label>
+                <input type="text" placeholder="Ej: Maíz, Papa...">
+            </div>
+
+            <div class="filter-group">
+                <label>Mercado</label>
+                <label><input type="radio" name="mercado"> Mercado Central</label>
+                <label><input type="radio" name="mercado"> Bolsa Agrícola</label>
+                <label><input type="radio" name="mercado"> Mercado Internacional</label>
+                <label><input type="radio" name="mercado"> Mercado Local</label>
+            </div>
+
+            <div class="filter-group">
+                <label>Rango de Precio</label>
+                <input type="number" id="precio-min" placeholder="Desde" min="15000">
+                <input type="number" id="precio-max" placeholder="Hasta" max="30000000">
+                <input type="range" id="price-slider" min="15000" max="30000000" step="1000" value="15000">
+            </div>
+        </aside>
+
+        <div class="market-content">
+            
+            <h1 class="titulo-mercado">Precios del <span>Mercado</span></h1>
+            <p>Consulta los precios más recientes de productos agrícolas y toma decisiones informadas para tu negocio.</p>
+            
+            <div class="info-actualizacion">
+                <div class="actualizacion-izq">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Última actualización: 14:30 PM</span>
+                </div>
+                <div class="actualizacion-der">
+                    <span>Fecha: 02/03/26</span>
+                </div>
+            </div>
+            
+            <section class="catalogo-productos">
+
+                <div class="producto-card">
+                    <div class="producto-info">
+                        <img src="eCommerceAssets/img/maiz.jpg" alt="Maíz">
+                        <h3>Maíz</h3>
+                        <div class="ubicacion">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Mercado Central</span>
+                        </div>
+                        <div class="fecha">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hace 3 horas</span>
+                        </div>
+                        <div class="precio">
+                            <span class="moneda">COP$</span>
+                            <span class="valor">139,000</span>
+                            <span style="font-size:12px; color:#999;">(60Kg)</span>
+                        </div>
+                        <button class="btn-carrito">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+                        </button>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-info">
+                        <img src="eCommerceAssets/img/cafe.jpg" alt="Cafe">
+                        <h3>Café Orgánico</h3>
+                        <div class="ubicacion">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Bolsa Agrícola</span>
+                        </div>
+                        <div class="fecha">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hace 1 hora</span>
+                        </div>
+                        <div class="precio">
+                            <span class="moneda">COP$</span>
+                            <span class="valor">30,000</span>
+                            <span style="font-size:12px; color:#999;">(1LB)</span>
+                        </div>
+                        <button class="btn-carrito">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+                        </button>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-info">
+                        <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate">
+                        <h3>Tomate Castilla</h3>
+                        <div class="ubicacion">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Mercado Central</span>
+                        </div>
+                        <div class="fecha">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hace 3 horas</span>
+                        </div>
+                        <div class="precio">
+                            <span class="moneda">COP$</span>
+                            <span class="valor">120,000</span>
+                            <span style="font-size:12px; color:#999;">(65Kg)</span>
+                        </div>
+                        <button class="btn-carrito">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+                        </button>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-info">
+                        <img src="eCommerceAssets/img/platano.jpg" alt="Platano">
+                        <h3>Plátano Artón</h3>
+                        <div class="ubicacion">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Mercado Central</span>
+                        </div>
+                        <div class="fecha">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hace 3 horas</span>
+                        </div>
+                        <div class="precio">
+                            <span class="moneda">COP$</span>
+                            <span class="valor">45,000</span>
+                            <span style="font-size:12px; color:#999;">(Racimo)</span>
+                        </div>
+                        <button class="btn-carrito">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+                        </button>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-info">
+                        <img src="eCommerceAssets/img/papa.jpg" alt="Papa"> <h3>Papa Parda</h3>
+                        <div class="ubicacion">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Bolsa Agrícola</span>
+                        </div>
+                        <div class="fecha">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hace 1 hora</span>
+                        </div>
+                        <div class="precio">
+                            <span class="moneda">COP$</span>
+                            <span class="valor">100,000</span>
+                            <span style="font-size:12px; color:#999;">(60Kg)</span>
+                        </div>
+                        <button class="btn-carrito">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+                        </button>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-info">
+                        <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate">
+                        <h3>Tomate Chonto</h3>
+                        <div class="ubicacion">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Mercado Local</span>
+                        </div>
+                        <div class="fecha">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Hace 5 horas</span>
+                        </div>
+                        <div class="precio">
+                            <span class="moneda">COP$</span>
+                            <span class="valor">95,000</span>
+                            <span style="font-size:12px; color:#999;">(Canastilla)</span>
+                        </div>
+                        <button class="btn-carrito">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+                        </button>
+                    </div>
+                </div>
+
+            </section> </div> </section>
+
+    <section class="banner-final">
+        <div class="banner-left">
+            <h2>Únete a nuestra familia Agro</h2>
+            <p>Agro Merger es una compañía dedicada a ayudar a campesinos independientes.</p>
+        </div>
+
+        <div class="banner-right">
+            <div class="suscripcion">
+                <input type="email" placeholder="Ingresa tu correo">
+                <button class="btn-enviar">Suscribirse</button>
+            </div>
+            <div class="redes">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        </div>
+    </section>
+
+</div> </body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Agro-Merger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link href="../../eCommerceAssets/styles/contactos.css.css" rel="stylesheet" type="text/css">
+
+    <style>
+        /* Contenedor Principal de Contacto */
+        .contact-container {
+            width: 1320px;
+            max-width: 100%; /* Para que no se desborde en pantallas pequeñas */
+            height: 665px;
+            background-color: #ffffff;
+            opacity: 1;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 50px 50px 30px 50px;
+            margin: 50px auto; /* Centra el bloque horizontalmente en tu wrapper */
+            display: flex;
+            flex-direction: column;
+            gap: 30px; 
+            box-sizing: border-box;
+        }
+
+        /* Título */
+        .contact-title {
+            text-align: center;
+            font-size: 32px;
+            color: #1a1a1a;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .info-item .icon {
+            font-size: 36px;
+            color: #7cb342; 
+            margin-bottom: 5px;
+        }
+
+        .info-item h3 {
+            font-size: 16px;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .info-item p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .info-item a {
+            font-size: 14px;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+      
+        .form-row {
+            display: flex;
+            gap: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .input-group .required {
+            color: #7cb342;
+        }
+
+        .input-group input, 
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid #dcedc8;
+            border-radius: 25px;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .input-group input::placeholder, 
+        .input-group textarea::placeholder {
+            color: #a0a0a0;
+        }
+
+        .input-group input:focus, 
+        .input-group textarea:focus {
+            border-color: #7cb342;
+        }
+
+        .input-group textarea {
+            resize: none;
+            height: 120px;
+            border-radius: 15px;
+        }
+
+       
+        .form-submit {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .form-submit button {
+            background-color: #7cb342;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-submit button:hover {
+            background-color: #689f38;
+        }
+
+        .form-submit button i {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div id="mainWrapper">
+    
+    <header> 
+        <div class="logo">
+          <img src="../../eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
+			<span class="logo__text">Agro-Merge</span>
+        </div>
+
+        <div id="headerLinks">
+            <a href="../../Index.html" title="Precios">Inicio</a>
+            <a href="../Productos/Productos.html" title="Productos">Productos</a>
+            <a href="#" title="Noticias">Noticias</a>
+            <a href="../Contactos/Contactos.html">Contacto</a>
+        </div>
+            
+        <input type="search" placeholder="Buscar un producto..." class="search-input">
+        
+        <a href="../Login/login.html" title="Login"><i class="fa-regular fa-user"></i> Iniciar Sesión</a>
+    </header>
+    
+    <section class="contact-section">
+        <div class="contact-container">
+            <h1 class="contact-title">Mándanos un mensaje</h1>
+
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <h3>Dirección</h3>
+                    <p>Popayán Cauca<br>1</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt icon"></i>
+                    <h3>Celular</h3>
+                    <p>+57 3008683628</p>
+                    <a href="#">Llámanos</a>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-whatsapp icon"></i>
+                    <h3>WhatsApp</h3>
+                    <p>+57 3008683628</p>
+                    <a href="#">Escríbenos en WhatsApp</a>
+                </div>
+                <div class="info-item">
+                    <i class="far fa-envelope icon"></i>
+                    <h3>E-mail</h3>
+                    <p>agromerge@gmail.com</p>
+                    <a href="#">Envía un correo</a>
+                </div>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>E-mail <span class="required">*</span></label>
+                        <input type="email" placeholder="Escribe tu e-mail...">
+                    </div>
+                    <div class="input-group">
+                        <label>Nombre <span class="required">*</span></label>
+                        <input type="text" placeholder="Escribe tu nombre...">
+                    </div>
+                    <div class="input-group">
+                        <label>Teléfono <span class="required">*</span></label>
+                        <input type="tel" placeholder="Escribe tu teléfono...">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Mensaje <span class="required">*</span></label>
+                    <textarea placeholder="Escribe un mensaje..."></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button type="button"> <i class="far fa-check-circle"></i> Enviar un mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="banner-final">
+        <div class="banner-left">
+            <h2>Únete a nuestra familia Agro para ayudar a más personas</h2>
+            <p>Agro Merger es una compañía dedicada a ayudar a campesinos independientes</p>
+        </div>
+
+        <div class="banner-right">
+            <div class="suscripcion">
+                <input type="email" placeholder="Ingresa correo electrónico">
+                <button class="btn-enviar">Enviar</button>
+            </div>
+
+            <div class="redes">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>
