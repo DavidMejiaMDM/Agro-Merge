@@ -22,9 +22,11 @@
 </div>
 
 <br/>
+<es/>
 
-[📖 **Documentación Oficial (AGM v0.1)**](documentos/Agro Merge.pdf) • 
+📖 **[Documentación Oficial (AGM v0.1)**] (docs/documentos/Agro Merge.pdf) • 
 
+<es/>
 ---
 </div>
 
