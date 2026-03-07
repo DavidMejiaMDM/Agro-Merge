@@ -24,7 +24,7 @@
 <br/>
 <es/>
 
-📖 **[Documentación Oficial (AGM v0.1)**] (docs/documentos/Agro Merge.pdf) • 
+
 
 <es/>
 ---
