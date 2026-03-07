@@ -23,7 +23,7 @@
 
 <br/>
 
-[📖 **Documentación Oficial (AGM v0.1)**](documentos/Agro Merger.pdf) • 
+[📖 **Documentación Oficial (AGM v0.1)**](documentos/Agro Merge.pdf) • 
 
 ---
 </div>
