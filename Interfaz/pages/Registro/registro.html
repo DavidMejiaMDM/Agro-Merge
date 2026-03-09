@@ -166,5 +166,12 @@
 
     <aside class="styles-image"></aside>
   </div>
+<script>
+    document.querySelector('form').addEventListener('submit', function() {
+      // Asegúrate de que el input de correo en esta página se llame "correo_usuario"
+      const emailValue = document.querySelector('input[name="correo_usuario"]').value;
+      localStorage.setItem('userEmail', emailValue);
+    });
+  </script>
 </body>
 </html>

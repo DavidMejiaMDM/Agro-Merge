@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <title>Confirmación de registro - Agro-Merge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-	<link href="../../eCommerceAssets/styles/styles.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../../eCommerceAssets/styles/styles.css">
 </head>
 <body>
   <div class="styles-layout">
@@ -20,46 +21,24 @@
       <section class="styles-panel__body">
         <h1 class="styles-title">Confirmación de registro</h1>
         <p class="styles-subtitle">
-          Ingresa el código de verificación que te enviamos a
-          <strong>user@gmail.com</strong>.
+          Ingresa el código de verificación que enviamos a: <br>
+          <strong id="displayEmail" style="color: #16a34a;">Cargando correo...</strong>
         </p>
 
-        <p
-          style="
-            font-size: 13px;
-            color: #16a34a;
-            margin-bottom: 6px;
-            text-align: center;
-          "
-        >
-          Ingresar código
-        </p>
+        <form id="verifyForm" action="http://localhost:3000/verificar-codigo" method="POST">
+          <input type="hidden" name="correo_usuario" id="hiddenEmail">
 
-        <div class="code-inputs">
-          <input type="text" maxlength="1" />
-          <input type="text" maxlength="1" />
-          <input type="text" maxlength="1" />
-          <input type="text" maxlength="1" />
-        </div>
+          <div class="code-inputs" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+            <input type="text" name="d1" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" name="d2" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" name="d3" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
+            <input type="text" name="d4" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
+          </div>
 
-        <button class="btn btn--primary" style="width: 100%; max-width: 260px; margin: 0 auto 18px; display: block;">
-          Verificar
-        </button>
-
-        <p
-          style="
-            font-size: 13px;
-            color: #6b7280;
-            text-align: center;
-            margin-bottom: 4px;
-          "
-        >
-          El código puede tardar unos segundos en llegar.
-        </p>
-        <p style="font-size: 13px; text-align: center;">
-          ¿No te llegó el código?
-          <a href="#" class="link">Reenviar</a>
-        </p>
+          <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: 25px;">
+            Verificar
+          </button>
+        </form>
       </section>
 
       <footer class="styles-panel__footer">
@@ -70,5 +49,35 @@
 
     <aside class="styles-image"></aside>
   </div>
+
+  <script>
+    // 1. Recuperar el correo del localStorage
+    window.onload = function() {
+      const savedEmail = localStorage.getItem('userEmail');
+      if (savedEmail) {
+        document.getElementById('displayEmail').textContent = savedEmail;
+        document.getElementById('hiddenEmail').value = savedEmail;
+      } else {
+        document.getElementById('displayEmail').textContent = "Correo no detectado";
+        console.error("Error: userEmail no encontrado en localStorage");
+      }
+    };
+
+    // 2. Saltar automáticamente entre cuadros
+    const inputs = document.querySelectorAll('.code-box');
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        if (e.inputType === "deleteContentBackward") return; 
+        if (input.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === "Backspace" && !input.value && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
