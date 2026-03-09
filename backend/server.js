@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -8,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../Interfaz')));
 
 // 1. Conexión a  MySQL Workbench
 const conexion = mysql.createConnection({
@@ -48,7 +50,41 @@ app.post('/registro', (req, res) => {
     });
 });
 
-// Encender el servidor
+// =======================================================
+// RUTA 3: LOGIN 
+// =======================================================
+app.post('/login', (req, res) => {
+    const email = req.body.correo_usuario;
+    const contrasena = req.body.clave_usuario;
+
+    // Buscamos si existe un usuario con ese correo y esa contraseña iguales
+    const sql = 'SELECT * FROM usuarios WHERE email = ? AND contrasena = ?';
+    
+    conexion.query(sql, [email, contrasena], (error, resultados) => {
+        if (error) {
+            console.error('Error en el login:', error);
+            return res.send('Hubo un error al procesar tu solicitud.');
+        }
+
+        if (resultados.length > 0) {
+            const usuario = resultados[0];
+            
+            // Verificamos si ya puso el código de 4 dígitos (para saber si el estado es activo)
+            if (usuario.estado === 'inactivo') {
+                res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu correo con el código de 4 dígitos antes de iniciar sesión.</p><a href="http://127.0.0.1:5500/verificar.html">Ir a verificar</a>');
+            } else {
+                // aqui redireccionamos al idenx principal
+                console.log('Login exitoso de:', usuario.nombre);
+                res.redirect('http://127.0.0.1:5501/Index.html');
+            }
+        } else {
+            // No coincidió el correo o la contraseña
+            res.send('<h1>Error</h1><p>Correo o contraseña incorrectos.</p><a href="javascript:history.back()">Volver a intentar</a>');
+        }
+    });
+});
+
+// Encender servidor
 app.listen(3000, () => {
     console.log('Servidor corriendo en el puerto 3000');
 });

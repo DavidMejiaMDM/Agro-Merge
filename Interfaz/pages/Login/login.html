@@ -21,10 +21,10 @@
         <h1 class="styles-title">Inicio de sesión</h1>
         <p class="styles-subtitle">Inicia sesión y empieza a comprar.</p>
 
-        <form class="form">
+       <form class="form" action="http://localhost:3000/login" method="POST">
           <div class="form-group">
             <label for="email">Correo</label>
-            <input id="email" type="email" placeholder="user@gmail.com" />
+            <input id="email" type="email" name="correo_usuario" placeholder="user@gmail.com" required />
           </div>
 
           <div class="form-group">
@@ -32,7 +32,9 @@
             <input
               id="password"
               type="password"
+              name="clave_usuario"
               placeholder="Escribe tu contraseña"
+              required
             />
           </div>
 
@@ -47,8 +49,7 @@
           </div>
 
           <button class="btn btn--primary" type="submit">Login</button>
-			
-
+            
           <p class="styles-footer-text">
             ¿No tienes una cuenta?
             <a href="../Registro/registro.html" class="link">Crear cuenta</a>
