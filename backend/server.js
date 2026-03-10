@@ -138,7 +138,7 @@ app.post('/verificar-codigo', (req, res) => {
             const updateSql = 'UPDATE usuarios SET estado = "activo" WHERE email = ?';
             conexion.query(updateSql, [correo_usuario], (err) => {
                 // Redirigimos al login o al index ya logueado
-                res.redirect('http://127.0.0.1:5500/Interfaz/pages/Login/login.html');
+                res.redirect('http://127.0.0.1:5500/Interfaz/pages/Correo-verificado/correo.verificado.html');
             });
         } else {
             // CÓDIGO INCORRECTO
