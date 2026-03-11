@@ -6,7 +6,7 @@
 <img src="https://readme-typing-svg.herokuapp.com?font=Bebas+Neue&size=45&duration=2500&pause=1500&color=7ED321&center=true&vCenter=true&width=600&height=90&lines=AGRO+MERGE+%F0%9F%8C%B1;Tecnolog%C3%ADa+Agr%C3%ADcola+Inteligente" alt="AGRO MERGE" />
 
 ### 🚜 Transformando el campo a través de la tecnologia 
-*Fortaleciendo el mercado orgnaicom, conectando con industriars de abonos y fertilizantes.*
+*Fortaleciendo el mercado organico, conectando con industriars de abonos y fertilizantes.*
 
 <br/>
 
