@@ -105,12 +105,17 @@ app.post('/login', (req, res) => {
             const usuario = resultados[0];
             
             if (usuario.estado === 'inactivo') {
-                // CORRECCIÓN: Si está inactivo, lo mandamos a la página de confirmar código, no a una que no existe
                 res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="http://127.0.0.1:5500/Interfaz/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
             } else {
                 console.log('Login exitoso de:', usuario.nombre);
-                // Asegúrate de que el puerto 5501 sea el que está usando tu Index.html
-                res.redirect('http://127.0.0.1:5500/Interfaz/Index.html');
+                
+                // --- Cambio de login a usuario en el index principal luego de registrarse ---
+               
+                const nombreSeguro = encodeURIComponent(usuario.nombre);
+                
+               
+                res.redirect(`http://127.0.0.1:5500/Interfaz/Index.html?login=true&nombre=${nombreSeguro}`);
+                
             }
         } else {
             res.send('<h1>Error</h1><p>Correo o contraseña incorrectos.</p><a href="javascript:history.back()">Volver a intentar</a>');
