@@ -124,7 +124,7 @@ header {
   margin: 30px 0;
   border-radius: var(--radius);
   overflow: hidden;
-  height: 400px;
+  height: 280px;
   box-shadow: var(--shadow-md);
   position: relative;
 }
@@ -235,7 +235,7 @@ header {
   position: relative;
   
   /* Animación de entrada */
-  animation: fadeInUp 0.8s ease backwards;
+  animation: fadeInUp 0.2s ease backwards;
 }
 
 /* Cascada de animación (Delay para cada tarjeta) */

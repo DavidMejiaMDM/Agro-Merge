@@ -35,28 +35,29 @@
     <section class="market-wrapper">
 
         <aside class="filters">
-            <h3>Filtros</h3>
+    <h3>Filtros</h3>
 
-            <div class="filter-group">
-                <label>Buscar Producto</label>
-                <input type="text" placeholder="Ej: Maíz, Papa...">
-            </div>
+    <div class="filter-group">
+        <label>Buscar Producto</label>
+        <input type="text" id="input-busqueda" placeholder="Ej: Maíz, Papa...">
+    </div>
 
-            <div class="filter-group">
-                <label>Mercado</label>
-                <label><input type="radio" name="mercado"> Mercado Central</label>
-                <label><input type="radio" name="mercado"> Bolsa Agrícola</label>
-                <label><input type="radio" name="mercado"> Mercado Internacional</label>
-                <label><input type="radio" name="mercado"> Mercado Local</label>
-            </div>
+    <div class="filter-group">
+        <label>Mercado</label>
+        <label><input type="radio" name="mercado" value="todos" checked> Todos</label>
+        <label><input type="radio" name="mercado" value="central"> Mercado Central</label>
+        <label><input type="radio" name="mercado" value="bolsa"> Bolsa Agrícola</label>
+        <label><input type="radio" name="mercado" value="internacional"> Mercado Internacional</label>
+        <label><input type="radio" name="mercado" value="local"> Mercado Local</label>
+    </div>
 
-            <div class="filter-group">
-                <label>Rango de Precio</label>
-                <input type="number" id="precio-min" placeholder="Desde" min="15000">
-                <input type="number" id="precio-max" placeholder="Hasta" max="30000000">
-                <input type="range" id="price-slider" min="15000" max="30000000" step="1000" value="15000">
-            </div>
-        </aside>
+    <div class="filter-group">
+        <label>Rango de Precio</label>
+        <input type="number" id="precio-min" placeholder="Desde" min="0" value="0">
+        <input type="number" id="precio-max" placeholder="Hasta" max="30000000" value="30000000">
+        <input type="range" id="price-slider" min="0" max="30000000" step="1000" value="30000000">
+    </div>
+</aside>
 
         <div class="market-content">
             
@@ -74,143 +75,129 @@
             </div>
             
             <section class="catalogo-productos">
+<div class="producto-card" data-precio="139000" data-mercado="central">
+    <div class="producto-info">
+        <img src="eCommerceAssets/img/maiz.jpg" alt="Maíz">
+        <h3 class="producto-nombre">Maíz</h3> <div class="ubicacion">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="mercado-texto">Mercado Central</span> </div>
+        
+        <div class="fecha">
+            <i class="fa-regular fa-clock"></i>
+            <span>Hace 3 horas</span>
+        </div>
+        
+        <div class="precio">
+            <span class="moneda">COP$</span>
+            <span class="valor">139,990</span>
+            <span style="font-size:12px; color:#999;">(60Kg)</span>
+        </div>
+        
+        <button class="btn-carrito" onclick="agregarAlCarrito('ROD_MAIZ', 'AgroField', 'Maíz Híbrido (60kg)', 139990, 'eCommerceAssets/img/maiz.jpg', 50)">
+            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+        </button>
+    </div>
+</div>
 
-                <div class="producto-card">
-                    <div class="producto-info">
-                        <img src="eCommerceAssets/img/maiz.jpg" alt="Maíz">
-                        <h3>Maíz</h3>
-                        <div class="ubicacion">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Mercado Central</span>
-                        </div>
-                        <div class="fecha">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Hace 3 horas</span>
-                        </div>
-                        <div class="precio">
-                            <span class="moneda">COP$</span>
-                            <span class="valor">139,000</span>
-                            <span style="font-size:12px; color:#999;">(60Kg)</span>
-                        </div>
-                        <button class="btn-carrito">
-                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
-                        </button>
-                    </div>
-                </div>
+                <div class="producto-card" data-precio="30000" data-mercado="bolsa">
+    <div class="producto-info">
+        <img src="eCommerceAssets/img/cafe.jpg" alt="Cafe">
+        <h3 class="producto-nombre">Café Orgánico</h3>
+        <div class="ubicacion">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="mercado-texto">Bolsa Agrícola</span>
+        </div>
+        <div class="fecha"><i class="fa-regular fa-clock"></i> <span>Hace 1 hora</span></div>
+        <div class="precio">
+            <span class="moneda">COP$</span>
+            <span class="valor">30,000</span>
+            <span style="font-size:12px; color:#999;">(1LB)</span>
+        </div>
+        <button class="btn-carrito" onclick="agregarAlCarrito('C001', 'Orgánicos', 'Café Orgánico (1LB)', 30000, 'eCommerceAssets/img/cafe.jpg', 100)">
+            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+        </button>
+    </div>
+</div>
 
-                <div class="producto-card">
-                    <div class="producto-info">
-                        <img src="eCommerceAssets/img/cafe.jpg" alt="Cafe">
-                        <h3>Café Orgánico</h3>
-                        <div class="ubicacion">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Bolsa Agrícola</span>
-                        </div>
-                        <div class="fecha">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Hace 1 hora</span>
-                        </div>
-                        <div class="precio">
-                            <span class="moneda">COP$</span>
-                            <span class="valor">30,000</span>
-                            <span style="font-size:12px; color:#999;">(1LB)</span>
-                        </div>
-                        <button class="btn-carrito">
-                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
-                        </button>
-                    </div>
-                </div>
+<div class="producto-card" data-precio="120000" data-mercado="central">
+    <div class="producto-info">
+        <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate">
+        <h3 class="producto-nombre">Tomate Castilla</h3>
+        <div class="ubicacion">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="mercado-texto">Mercado Central</span>
+        </div>
+        <div class="fecha"><i class="fa-regular fa-clock"></i> <span>Hace 3 horas</span></div>
+        <div class="precio">
+            <span class="moneda">COP$</span>
+            <span class="valor">120,000</span>
+            <span style="font-size:12px; color:#999;">(65Kg)</span>
+        </div>
+        <button class="btn-carrito" onclick="agregarAlCarrito('T001', 'Legumbres', 'Tomate Castilla (65Kg)', 120000, 'eCommerceAssets/img/tomate.jpg', 40)">
+            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+        </button>
+    </div>
+</div>
 
-                <div class="producto-card">
-                    <div class="producto-info">
-                        <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate">
-                        <h3>Tomate Castilla</h3>
-                        <div class="ubicacion">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Mercado Central</span>
-                        </div>
-                        <div class="fecha">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Hace 3 horas</span>
-                        </div>
-                        <div class="precio">
-                            <span class="moneda">COP$</span>
-                            <span class="valor">120,000</span>
-                            <span style="font-size:12px; color:#999;">(65Kg)</span>
-                        </div>
-                        <button class="btn-carrito">
-                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
-                        </button>
-                    </div>
-                </div>
+<div class="producto-card" data-precio="45000" data-mercado="central">
+    <div class="producto-info">
+        <img src="eCommerceAssets/img/platano.jpg" alt="Platano">
+        <h3 class="producto-nombre">Plátano Artón</h3>
+        <div class="ubicacion">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="mercado-texto">Mercado Central</span>
+        </div>
+        <div class="fecha"><i class="fa-regular fa-clock"></i> <span>Hace 3 horas</span></div>
+        <div class="precio">
+            <span class="moneda">COP$</span>
+            <span class="valor">45,000</span>
+            <span style="font-size:12px; color:#999;">(Racimo)</span>
+        </div>
+        <button class="btn-carrito" onclick="agregarAlCarrito('P001', 'Frutas', 'Plátano Artón (Racimo)', 45000, 'eCommerceAssets/img/platano.jpg', 25)">
+            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+        </button>
+    </div>
+</div>
 
-                <div class="producto-card">
-                    <div class="producto-info">
-                        <img src="eCommerceAssets/img/platano.jpg" alt="Platano">
-                        <h3>Plátano Artón</h3>
-                        <div class="ubicacion">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Mercado Central</span>
-                        </div>
-                        <div class="fecha">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Hace 3 horas</span>
-                        </div>
-                        <div class="precio">
-                            <span class="moneda">COP$</span>
-                            <span class="valor">45,000</span>
-                            <span style="font-size:12px; color:#999;">(Racimo)</span>
-                        </div>
-                        <button class="btn-carrito">
-                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
-                        </button>
-                    </div>
-                </div>
+<div class="producto-card" data-precio="100000" data-mercado="bolsa">
+    <div class="producto-info">
+        <img src="eCommerceAssets/img/papa.jpg" alt="Papa">
+        <h3 class="producto-nombre">Papa Parda</h3>
+        <div class="ubicacion">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="mercado-texto">Bolsa Agrícola</span>
+        </div>
+        <div class="fecha"><i class="fa-regular fa-clock"></i> <span>Hace 1 hora</span></div>
+        <div class="precio">
+            <span class="moneda">COP$</span>
+            <span class="valor">100,000</span>
+            <span style="font-size:12px; color:#999;">(60Kg)</span>
+        </div>
+        <button class="btn-carrito" onclick="agregarAlCarrito('PA01', 'Tubérculos', 'Papa Parda (60Kg)', 100000, 'eCommerceAssets/img/papa.jpg', 60)">
+            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+        </button>
+    </div>
+</div>
 
-                <div class="producto-card">
-                    <div class="producto-info">
-                        <img src="eCommerceAssets/img/papa.jpg" alt="Papa"> <h3>Papa Parda</h3>
-                        <div class="ubicacion">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Bolsa Agrícola</span>
-                        </div>
-                        <div class="fecha">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Hace 1 hora</span>
-                        </div>
-                        <div class="precio">
-                            <span class="moneda">COP$</span>
-                            <span class="valor">100,000</span>
-                            <span style="font-size:12px; color:#999;">(60Kg)</span>
-                        </div>
-                        <button class="btn-carrito">
-                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
-                        </button>
-                    </div>
-                </div>
-
-                <div class="producto-card">
-                    <div class="producto-info">
-                        <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate">
-                        <h3>Tomate Chonto</h3>
-                        <div class="ubicacion">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Mercado Local</span>
-                        </div>
-                        <div class="fecha">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Hace 5 horas</span>
-                        </div>
-                        <div class="precio">
-                            <span class="moneda">COP$</span>
-                            <span class="valor">95,000</span>
-                            <span style="font-size:12px; color:#999;">(Canastilla)</span>
-                        </div>
-                        <button class="btn-carrito">
-                            <i class="fa-solid fa-cart-shopping"></i> Agregar 
-                        </button>
-                    </div>
-                </div>
+<div class="producto-card" data-precio="95000" data-mercado="local">
+    <div class="producto-info">
+        <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate">
+        <h3 class="producto-nombre">Tomate Chonto</h3>
+        <div class="ubicacion">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="mercado-texto">Mercado Local</span>
+        </div>
+        <div class="fecha"><i class="fa-regular fa-clock"></i> <span>Hace 5 horas</span></div>
+        <div class="precio">
+            <span class="moneda">COP$</span>
+            <span class="valor">95,000</span>
+            <span style="font-size:12px; color:#999;">(Canastilla)</span>
+        </div>
+        <button class="btn-carrito" onclick="agregarAlCarrito('T002', 'Legumbres', 'Tomate Chonto (Canastilla)', 95000, 'eCommerceAssets/img/tomate.jpg', 35)">
+            <i class="fa-solid fa-cart-shopping"></i> Agregar 
+        </button>
+    </div>
+</div>
 
             </section> </div> </section>
 
@@ -252,7 +239,7 @@
     const btnLogin = document.getElementById('btn-login');
 
     if (sesionIniciada === 'true' && btnLogin) {
-      // --- MAGIA 1: MENÚ DE PERFIL ---
+      // --- MENÚ DE PERFIL ---
       btnLogin.outerHTML = `
         <div style="position: relative; display: inline-block;">
           <button id="btn-user-menu" style="background: none; border: none; cursor: pointer; font: inherit; color: inherit; display: flex; align-items: center; gap: 5px; padding: 5px;">
@@ -279,7 +266,7 @@
         window.location.reload(); 
       });
 
-      // --- MAGIA 2: ESTRUCTURA DEL CARRITO FLOTANTE ---
+      // --- ESTRUCTURA DEL CARRITO FLOTANTE ---
       const carritoHTML = `
         <button id="btn-flotante-carrito" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: #1e7b36; color: white; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-size: 22px; cursor: pointer; z-index: 9998; display: flex; justify-content: center; align-items: center;">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -314,7 +301,7 @@
       `;
       document.body.insertAdjacentHTML('beforeend', carritoHTML);
 
-      // --- MAGIA 3: LÓGICA FUNCIONAL DEL CARRITO ---
+      // --- LÓGICA FUNCIONAL DEL CARRITO ---
       
       // 1. Leer el carrito de la caja fuerte o crear uno vacío
       let carrito = JSON.parse(localStorage.getItem('carritoAgro')) || [];
@@ -416,7 +403,74 @@
       renderizarCarrito();
     }
   });
+	
+	function aplicarFiltros() {
+    // 1. Obtener el texto de búsqueda
+    const busqueda = document.getElementById('input-busqueda').value.toLowerCase();
+    
+    // 2. Obtener el mercado seleccionado (radio button)
+    const mercadoRadio = document.querySelector('input[name="mercado"]:checked');
+    const mercadoFiltro = mercadoRadio ? mercadoRadio.value : 'todos';
+
+    // 3. Obtener rango de precios
+    const precioMin = parseInt(document.getElementById('precio-min').value) || 0;
+    const precioMax = parseInt(document.getElementById('precio-max').value) || 30000000;
+
+    // 4. Seleccionar todas las tarjetas
+    const tarjetas = document.querySelectorAll('.producto-card');
+
+    tarjetas.forEach(card => {
+        // Extraer datos de la tarjeta
+        const nombre = card.querySelector('.producto-nombre').innerText.toLowerCase();
+        const mercadoTexto = card.querySelector('.mercado-texto').innerText.toLowerCase();
+        const precio = parseInt(card.getAttribute('data-precio'));
+        const mercadoId = card.getAttribute('data-mercado').toLowerCase();
+
+        // Condiciones
+        const coincideNombre = nombre.includes(busqueda) || mercadoTexto.includes(busqueda);
+        const coincidePrecio = precio >= precioMin && precio <= precioMax;
+        const coincideMercado = (mercadoFiltro === 'todos' || mercadoId === mercadoFiltro);
+
+        // Mostrar u Ocultar
+        if (coincideNombre && coincidePrecio && coincideMercado) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+	
+	
+
+// --- SINCRONIZACIÓN FILTROS ---
+
+// Sincronizar el Slider con el Input "Hasta" (precio-max)
+const inputMin = document.getElementById('precio-min');
+const inputMax = document.getElementById('precio-max');
+const slider = document.getElementById('price-slider');
+
+slider.addEventListener('input', (e) => {
+    inputMax.value = e.target.value; // El número copia al slider
+    aplicarFiltros();
+});
+
+inputMax.addEventListener('input', (e) => {
+    slider.value = e.target.value; // El slider copia al número
+    aplicarFiltros();
+});
+
+// Escuchar cambios en los demás inputs
+inputMin.addEventListener('input', aplicarFiltros);
+document.getElementById('input-busqueda').addEventListener('input', aplicarFiltros);
+
+// Escuchar cambios en los Radio Buttons de mercado
+const radiosMercado = document.querySelectorAll('input[name="mercado"]');
+radiosMercado.forEach(radio => {
+    radio.addEventListener('change', aplicarFiltros);
+});
 </script>
+	
+	
 
 </body>
 </html>
