@@ -376,3 +376,11 @@ ALTER TABLE usuarios ADD codigo_verificacion VARCHAR(4) NULL;
 -- ================================================================
 -- FIN DEL SCRIPT — agromerge v1.0
 -- ================================================================
+
+
+USE agro_merge_db;
+
+DELETE FROM usuarios WHERE email = 'mdm3oficial@gmail.com';
+
+ALTER TABLE usuarios ADD COLUMN telefono VARCHAR(20);
+
