@@ -76,14 +76,14 @@ app.post('/registro', (req, res) => {
             if (err) {
                 console.error('Error de Nodemailer:', err);
                 // Aunque falle el correo, el usuario ya se creó. 
-                // Lo mandamos a la página de confirmación de todos modos.
-                return res.redirect('http://127.0.0.1:5500/Interfaz/pages/Confirmar-codigo/confirmar-codigo.html');
+                // Lo mandamos a la página de confirmación de todos modos. (Ruta actualizada)
+                return res.redirect('http://127.0.0.1:5501/pages/Confirmar-codigo/confirmar-codigo.html');
             }
             
             console.log('✅ Correo enviado con éxito a:', email);
             
-            // REDIRECCIÓN FINAL (Solo ocurre si el correo se envió o falló controladamente)
-            return res.redirect('http://127.0.0.1:5500/Interfaz/pages/Confirmar-codigo/confirmar-codigo.html');
+            // REDIRECCIÓN FINAL (Ruta actualizada)
+            return res.redirect('http://127.0.0.1:5501/pages/Confirmar-codigo/confirmar-codigo.html');
         });
     });
 });
@@ -105,17 +105,15 @@ app.post('/login', (req, res) => {
             const usuario = resultados[0];
             
             if (usuario.estado === 'inactivo') {
-                res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="http://127.0.0.1:5500/Interfaz/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
+                // Ruta actualizada para cuenta inactiva
+                res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="http://127.0.0.1:5501/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
             } else {
                 console.log('Login exitoso de:', usuario.nombre);
                 
-                // --- Cambio de login a usuario en el index principal luego de registrarse ---
-               
                 const nombreSeguro = encodeURIComponent(usuario.nombre);
                 
-               
-                res.redirect(`http://127.0.0.1:5500/Interfaz/Index.html?login=true&nombre=${nombreSeguro}`);
-                
+                // REDIRECCIÓN CORRECTA AL INDEX PRINCIPAL (Ruta actualizada)
+                res.redirect(`http://127.0.0.1:5501/Index.html?login=true&nombre=${nombreSeguro}`);
             }
         } else {
             res.send('<h1>Error</h1><p>Correo o contraseña incorrectos.</p><a href="javascript:history.back()">Volver a intentar</a>');
@@ -142,8 +140,8 @@ app.post('/verificar-codigo', (req, res) => {
             // CÓDIGO CORRECTO: Actualizamos el estado a 'activo'
             const updateSql = 'UPDATE usuarios SET estado = "activo" WHERE email = ?';
             conexion.query(updateSql, [correo_usuario], (err) => {
-                // Redirigimos al login o al index ya logueado
-                res.redirect('http://127.0.0.1:5500/Interfaz/pages/Correo-verificado/correo.verificado.html');
+                // Redirigimos al mensaje de éxito (Ruta actualizada)
+                res.redirect('http://127.0.0.1:5501/pages/Correo-verificado/correo.verificado.html');
             });
         } else {
             // CÓDIGO INCORRECTO
