@@ -19,6 +19,8 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
+
+// Esta línea es la que permite que Express sirva tus HTML, CSS y JS sin usar Live Server
 app.use(express.static(path.join(__dirname, '../Interfaz')));
 
 // 1. Conexión a MySQL Workbench
@@ -76,14 +78,14 @@ app.post('/registro', (req, res) => {
             if (err) {
                 console.error('Error de Nodemailer:', err);
                 // Aunque falle el correo, el usuario ya se creó. 
-                // Lo mandamos a la página de confirmación de todos modos. (Ruta actualizada)
-                return res.redirect('http://127.0.0.1:5501/pages/Confirmar-codigo/confirmar-codigo.html');
+                // Ruta corregida a relativa
+                return res.redirect('/pages/Confirmar-codigo/confirmar-codigo.html');
             }
             
             console.log('✅ Correo enviado con éxito a:', email);
             
-            // REDIRECCIÓN FINAL (Ruta actualizada)
-            return res.redirect('http://127.0.0.1:5501/pages/Confirmar-codigo/confirmar-codigo.html');
+            // REDIRECCIÓN FINAL (Ruta corregida a relativa)
+            return res.redirect('/pages/Confirmar-codigo/confirmar-codigo.html');
         });
     });
 });
@@ -105,16 +107,15 @@ app.post('/login', (req, res) => {
             const usuario = resultados[0];
             
             if (usuario.estado === 'inactivo') {
-                // Ruta actualizada para cuenta inactiva
-                res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="http://127.0.0.1:5501/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
+                // Ruta corregida a relativa en el enlace
+                res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
             } else {
                 console.log('Login exitoso de:', usuario.nombre);
                 
                 const nombreSeguro = encodeURIComponent(usuario.nombre);
                 
-                // REDIRECCIÓN CORRECTA AL INDEX PRINCIPAL (Ruta actualizada)
-                // REDIRECCIÓN CORRECTA AL INDEX PRINCIPAL (Ahora enviamos también el email)
-            res.redirect(`http://127.0.0.1:5501/Index.html?login=true&nombre=${nombreSeguro}&email=${usuario.email}`);
+                // REDIRECCIÓN CORRECTA AL INDEX PRINCIPAL (Ruta corregida a relativa)
+                res.redirect(`/Index.html?login=true&nombre=${nombreSeguro}&email=${usuario.email}`);
             }
         } else {
             res.send('<h1>Error</h1><p>Correo o contraseña incorrectos.</p><a href="javascript:history.back()">Volver a intentar</a>');
@@ -141,8 +142,8 @@ app.post('/verificar-codigo', (req, res) => {
             // CÓDIGO CORRECTO: Actualizamos el estado a 'activo'
             const updateSql = 'UPDATE usuarios SET estado = "activo" WHERE email = ?';
             conexion.query(updateSql, [correo_usuario], (err) => {
-                // Redirigimos al mensaje de éxito (Ruta actualizada)
-                res.redirect('http://127.0.0.1:5501/pages/Correo-verificado/correo.verificado.html');
+                // Redirigimos al mensaje de éxito (Ruta corregida a relativa)
+                res.redirect('/pages/Correo-verificado/correo.verificado.html');
             });
         } else {
             // CÓDIGO INCORRECTO
@@ -172,9 +173,8 @@ app.post('/verificar-codigo-reset', (req, res) => {
         }
 
         if (resultados.length > 0) {
-            // CÓDIGO CORRECTO: Redirigimos a la pantalla de nueva contraseña
-            // *NOTA: Ajusta la ruta de abajo según dónde guardaste tu HTML de nueva contraseña*
-            res.redirect('http://127.0.0.1:5501/pages/Actualizar-Contraseña/Actualizar-Contraseña.html');
+            // CÓDIGO CORRECTO: Redirigimos a la pantalla de nueva contraseña (Ruta corregida a relativa)
+            res.redirect('/pages/Actualizar-Contraseña/Actualizar-Contraseña.html');
         } else {
             // CÓDIGO INCORRECTO
             res.send(`
@@ -238,9 +238,9 @@ app.post('/recover-password', (req, res) => {
                     return res.send('Error al enviar el correo. Verifica tu conexión.');
                 }
 
-                console.log('✅ Código de recuperación enviado a:', email);
-                // Redirigimos a la pantalla de verificación (Asegúrate que la ruta sea correcta)
-                res.redirect('http://127.0.0.1:5501/pages/Codigo-Contraseña/Codigo-Contraseña.html');
+                console.log(' Código de recuperación enviado a:', email);
+                // Redirigimos a la pantalla de verificación (Ruta corregida a relativa)
+                res.redirect('/pages/Codigo-Contraseña/Codigo-Contraseña.html');
             });
         });
     });
@@ -251,7 +251,7 @@ app.post('/update-password', (req, res) => {
     const email = req.body.correo_usuario;
     const nuevaContrasena = req.body.nueva_clave;
 
-    // Actualizamos la contraseña en la base de datos para ese usuario
+    
     const sql = 'UPDATE usuarios SET contrasena = ? WHERE email = ?';
 
     conexion.query(sql, [nuevaContrasena, email], (error, resultados) => {
@@ -260,22 +260,20 @@ app.post('/update-password', (req, res) => {
             return res.send('Hubo un error al guardar tu nueva contraseña.');
         }
 
-        // Opcional: Podrías cambiar también el codigo_verificacion a NULL o algo distinto 
-        // para que ese código ya no sea válido en el futuro por seguridad.
+        // Limpiamos el código de verificación para que no vuelva a ser usado
         const sqlLimpiarCodigo = 'UPDATE usuarios SET codigo_verificacion = NULL WHERE email = ?';
         conexion.query(sqlLimpiarCodigo, [email]);
 
-        console.log(' Contraseña actualizada con éxito para:', email);
+        console.log('✅ Contraseña actualizada con éxito para:', email);
         
-        // Redirigimos al Login para que el usuario inicie sesión con su nueva clave
-        // *NOTA: Asegúrate de que esta ruta sea la correcta hacia tu login.html*
-        res.redirect('http://127.0.0.1:5501/pages/Verificacion-Exitosa/Verificacion-Exitosa.html');
+        
+        res.redirect('/pages/Verificacion-Exitosa/Verificacion-Exitosa.html');
     });
 });
 
 
 // =======================================================
-// NUEVAS RUTAS PARA EL DASHBOARD DE PERFIL
+// RUTAS PARA EL DASHBOARD DE PERFIL
 // =======================================================
 
 // 7. RUTA: OBTENER DATOS DEL USUARIO LOGEADO
@@ -312,5 +310,8 @@ app.post('/api/actualizar-telefono', (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('Servidor corriendo en el puerto 3000');
+    console.log('====================================================');
+    console.log(' Servidor corriendo en el puerto 3000');
+    console.log('ACCEDE DESDE: http://localhost:3000/Index.html');
+    console.log('====================================================');
 });

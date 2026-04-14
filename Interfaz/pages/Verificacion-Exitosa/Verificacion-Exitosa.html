@@ -20,9 +20,6 @@
       </header>
 
       <section class="styles-panel__body" style="text-align: center;">
-        
-        
-
         <h1 class="styles-title">Contraseña actualizada</h1>
         
         <p class="styles-subtitle">
@@ -32,7 +29,6 @@
         <a href="../Login/login.html" class="btn btn--primary" style="display: block; width: 100%; text-align: center; text-decoration: none; margin-top: 30px; padding: 12px 0; box-sizing: border-box;">
           Ir al login
         </a>
-        
       </section>
 
       <footer class="styles-panel__footer">
@@ -44,12 +40,6 @@
     <aside class="styles-image"></aside>
   </div>
 
-  <script>
-    // Limpieza de seguridad: Como ya terminamos de cambiar la contraseña,
-    // borramos el correo de la memoria del navegador para que no se quede guardado.
-    window.onload = function() {
-      localStorage.removeItem('userEmail');
-    };
-  </script>
+  <script src="../js/verificacionOk.js"></script>
 </body>
 </html>

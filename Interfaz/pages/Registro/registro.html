@@ -5,7 +5,7 @@
   <title>Registro - Agro-Merge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
-	<link href="../../eCommerceAssets/styles/styles.css" rel="stylesheet" type="text/css">
+  <link href="../../eCommerceAssets/styles/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div class="styles-layout">
@@ -33,7 +33,6 @@
           </div>
 
           <div class="role-tabs__content">
-            <!-- Comprador -->
             <div class="role-pane role-pane--comprador">
               <form class="form" action="http://localhost:3000/registro" method="POST">
                 
@@ -42,10 +41,10 @@
                   <input type="text" name="nombre_usuario" placeholder="Nombre completo" required />
                 </div>
 
-               	<div class="form-group">
-  			<label>Tipo Documento</label>
-  			<input type="text" value="Cédula de Ciudadanía" class="input-readonly" readonly />
-			</div>
+                <div class="form-group">
+                  <label>Tipo Documento</label>
+                  <input type="text" value="Cédula de Ciudadanía" class="input-readonly" readonly />
+                </div>
 
                 <div class="form-group">
                   <label>Documento</label>
@@ -89,7 +88,6 @@
               </form>
             </div>
 
-            <!-- Vendedor -->
             <div class="role-pane role-pane--vendedor">
               <form class="form" onsubmit="event.preventDefault();">
                 <div class="form-group">
@@ -122,7 +120,6 @@
               </form>
             </div>
 
-            <!-- Empresa -->
             <div class="role-pane role-pane--empresa">
               <form class="form">
                 <div class="form-group">
@@ -166,12 +163,7 @@
 
     <aside class="styles-image"></aside>
   </div>
-<script>
-    document.querySelector('form').addEventListener('submit', function() {
-      // Asegúrate de que el input de correo en esta página se llame "correo_usuario"
-      const emailValue = document.querySelector('input[name="correo_usuario"]').value;
-      localStorage.setItem('userEmail', emailValue);
-    });
-  </script>
+
+  <script src="../js/registro.js"></script>
 </body>
 </html>
