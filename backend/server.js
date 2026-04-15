@@ -67,7 +67,9 @@ app.post('/registro', (req, res) => {
             html: `
                 <div style="text-align: center; font-family: sans-serif;">
                     <h2>¡Hola ${nombre}!</h2>
-                    <p>Usa el siguiente código para activar tu cuenta:</p>
+                    <p>¡Bienvenido a Agro Merge! Tu cuenta está casi lista.  
+                    Usa el siguiente código para activarla:
+                    :</p>
                     <h1 style="color: #16a34a;">${codigoVerificacion}</h1>
                 </div>
             `
@@ -90,39 +92,41 @@ app.post('/registro', (req, res) => {
     });
 });
 
-// 3. RUTA: LOGIN 
+// 3. RUTA: LOGIN (Tu versión original corregida)
 app.post('/login', (req, res) => {
     const email = req.body.correo_usuario;
     const contrasena = req.body.clave_usuario;
 
+    // Tu consulta original que busca correo Y contraseña
     const sql = 'SELECT * FROM usuarios WHERE email = ? AND contrasena = ?';
     
     conexion.query(sql, [email, contrasena], (error, resultados) => {
         if (error) {
             console.error('Error en el login:', error);
-            return res.send('Hubo un error al procesar tu solicitud.');
+            // Agregamos status 500 (Error interno)
+            return res.status(500).send('Hubo un error al procesar tu solicitud.');
         }
 
         if (resultados.length > 0) {
             const usuario = resultados[0];
             
             if (usuario.estado === 'inactivo') {
-                // Ruta corregida a relativa en el enlace
-                res.send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
+               
+                res.status(403).send('<h1>Cuenta inactiva</h1><p>Debes verificar tu código de 4 dígitos.</p><a href="/pages/Confirmar-codigo/confirmar-codigo.html">Ir a verificar ahora</a>');
             } else {
                 console.log('Login exitoso de:', usuario.nombre);
                 
                 const nombreSeguro = encodeURIComponent(usuario.nombre);
                 
-                // REDIRECCIÓN CORRECTA AL INDEX PRINCIPAL (Ruta corregida a relativa)
+                // Si todo está bien, dejamos tu redirección normal (por defecto es status 200/302)
                 res.redirect(`/Index.html?login=true&nombre=${nombreSeguro}&email=${usuario.email}`);
             }
         } else {
-            res.send('<h1>Error</h1><p>Correo o contraseña incorrectos.</p><a href="javascript:history.back()">Volver a intentar</a>');
+          
+            res.status(401).send('<h1>Error</h1><p>Correo o contraseña incorrectos.</p><a href="javascript:history.back()">Volver a intentar</a>');
         }
     });
 });
-
 // 4. RUTA: VERIFICAR CÓDIGO
 app.post('/verificar-codigo', (req, res) => {
     const { d1, d2, d3, d4, correo_usuario } = req.body;
@@ -306,6 +310,43 @@ app.post('/api/actualizar-telefono', (req, res) => {
             return res.status(500).json({ success: false, mensaje: 'Error al actualizar' });
         }
         res.json({ success: true, mensaje: 'Teléfono guardado correctamente' });
+    });
+});
+
+
+// 9. RUTA: CAMBIAR CONTRASEÑA DESDE EL DASHBOARD
+app.post('/api/cambiar-password', (req, res) => {
+    const { email, claveActual, claveNueva } = req.body;
+
+    const sqlCheck = 'SELECT contrasena FROM usuarios WHERE email = ?';
+    conexion.query(sqlCheck, [email], (err, resultados) => {
+        if (err) return res.status(500).json({ error: 'Error en la base de datos' });
+        
+        if (resultados.length === 0) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+        if (resultados[0].contrasena !== claveActual) {
+            return res.status(401).json({ error: 'La contraseña actual es incorrecta' });
+        }
+
+        const sqlUpdate = 'UPDATE usuarios SET contrasena = ? WHERE email = ?';
+        conexion.query(sqlUpdate, [claveNueva, email], (err2) => {
+            if (err2) return res.status(500).json({ error: 'Error al actualizar la contraseña' });
+            res.json({ mensaje: 'Contraseña actualizada con éxito' });
+        });
+    });
+});
+
+// 10. RUTA: ACTUALIZAR DIRECCIÓN
+app.post('/api/actualizar-direccion', (req, res) => {
+    const { email, direccion } = req.body;
+
+    const sql = 'UPDATE usuarios SET direccion = ? WHERE email = ?';
+    conexion.query(sql, [direccion, email], (err, resultados) => {
+        if (err) {
+            console.error('Error actualizando dirección:', err);
+            return res.status(500).json({ error: 'Error al guardar la dirección' });
+        }
+        res.json({ mensaje: 'Dirección guardada con éxito', direccion: direccion });
     });
 });
 
