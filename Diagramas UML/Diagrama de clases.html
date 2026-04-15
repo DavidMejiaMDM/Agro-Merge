@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Clases - Agro-Merge</title>
+    <style>
+       
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6; 
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #1b5e20; 
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+        }
+
+        .header p {
+            color: #666;
+            margin: 0;
+        }
+
+        .contenedor-diagrama {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto;
+            border: 1px solid #e0e0e0;
+        }
+
+    
+        .mermaid {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .mermaid[data-processed="true"] {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Agro-Merge</h1>
+        <p>Diagrama de Clases - Estructura de Base de Datos</p>
+    </div>
+
+    <div class="contenedor-diagrama">
+        <pre class="mermaid">
+            classDiagram
+                direction TB
+
+                class usuarios {
+                    +int id_usuario [PK]
+                    +varchar nombre
+                    +varchar email
+                    +varchar contrasena
+                    +varchar foto_perfil
+                    +enum rol
+                    +enum estado
+                    +datetime fecha_registro
+                    +varchar codigo_verificacion
+                }
+
+                class vendedores {
+                    +int id_vendedor [PK]
+                    +int id_usuario [FK]
+                    +varchar nombre_tienda
+                    +text descripcion
+                    +varchar telefono
+                }
+
+                class categorias {
+                    +int id_categoria [PK]
+                    +varchar nombre
+                    +text descripcion
+                }
+
+                class productos {
+                    +int id_producto [PK]
+                    +int id_vendedor [FK]
+                    +int id_categoria [FK]
+                    +varchar nombre
+                    +text descripcion
+                    +decimal precio
+                    +int stock
+                    +varchar imagen
+                    +enum estado
+                    +datetime fecha_publicacion
+                    +datetime fecha_creacion
+                }
+
+                class carrito {
+                    +int id_carrito [PK]
+                    +int id_usuario [FK]
+                    +datetime fecha_creacion
+                }
+
+                class detalle_carrito {
+                    +int id_detalle_carrito [PK]
+                    +int id_carrito [FK]
+                    +int id_producto [FK]
+                    +int cantidad
+                    +decimal precio_unitario
+                }
+
+                class pedidos {
+                    +int id_pedido [PK]
+                    +int id_comprador [FK]
+                    +enum estado
+                    +decimal total
+                    +varchar direccion_entrega
+                    +datetime fecha_pedido
+                }
+
+
+                class detalle_pedido {
+                    +int id_detalle [PK]
+                    +int id_pedido [FK]
+                    +int id_producto [FK]
+                    +int cantidad
+                    +decimal precio_unitario
+                }
+
+                class pagos {
+                    +int id_pago [PK]
+                    +int id_pedido [FK]
+                    +varchar metodo_pago
+                    +enum estado_pago
+                    +decimal monto
+                    +datetime fecha_pago
+                }
+
+                class notificaciones {
+                    +int id_notificacion [PK]
+                    +int id_usuario [FK]
+                    +text mensaje
+                    +varchar tipo
+                    +tinyint leida
+                    +datetime fecha
+                }
+
+                %% Relaciones
+                usuarios "1" -- "1" vendedores : tiene >
+                usuarios "1" -- "1" carrito : posee >
+                usuarios "1" -- "*" pedidos : realiza >
+                usuarios "1" -- "*" notificaciones : recibe >
+                vendedores "1" -- "*" productos : publica >
+                categorias "1" -- "*" productos : clasifica >
+                carrito "1" -- "*" detalle_carrito : contiene >
+                productos "1" -- "*" detalle_carrito : es parte de >
+                pedidos "1" -- "*" detalle_pedido : incluye >
+                productos "1" -- "*" detalle_pedido : corresponde a >
+                pedidos "1" -- "1" pagos : genera >
+        </pre>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        
+        // Configuramos los colores para que combinen con la paleta de Agro-Merge
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',           
+                primaryBorderColor: '#4CAF50',     
+                primaryTextColor: '#333333',       
+                lineColor: '#2e7d32',             
+                secondaryColor: '#e8f5e9',         
+                tertiaryColor: '#f4f7f6',          
+                fontFamily: 'Segoe UI, sans-serif',
+                fontSize: '14px'
+            }
+        });
+    </script>
+</body>
+</html>

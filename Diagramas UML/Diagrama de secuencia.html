@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramas de Secuencia - Agro-Merge</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                primaryBorderColor: '#4CAF50',
+                primaryTextColor: '#333333',
+                lineColor: '#2e7d32',
+                actorBkg: '#e8f5e9',
+                actorBorder: '#1b5e20',
+                actorTextColor: '#1b5e20',
+                signalColor: '#333333',
+                signalTextColor: '#333333',
+                fontFamily: 'Segoe UI, sans-serif',
+                fontSize: '14px'
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #1b5e20; margin: 0 0 10px 0; font-size: 2.2rem; }
+        .header p { color: #666; margin: 0; }
+        
+        .diagrama-section {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .diagrama-section h2 {
+            color: #2e7d32;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Agro-Merge</h1>
+        <p>Diagramas de Secuencia del Sistema</p>
+    </div>
+
+    <div class="diagrama-section">
+        <h2>1. Flujo de Acceso (Registro, Verificación y Login)</h2>
+        <div class="mermaid">
+            sequenceDiagram
+                actor U as Usuario
+                participant F as Frontend
+                participant B as Backend (Node.js)
+                participant DB as MySQL
+                participant M as Nodemailer
+
+                %% Registro y Verificación
+                U->>F: Llena formulario de registro
+                F->>B: POST /registro
+                B->>DB: Guarda usuario (estado inactivo) + PIN
+                B->>M: Envía PIN al correo
+                M-->>U: Recibe código de verificación
+                U->>F: Ingresa PIN en confirmar-codigo.html
+                F->>B: POST /verificar
+                B->>DB: Actualiza estado a 'activo'
+                B-->>F: Redirige a Correo Verificado / Login
+
+                %% Login
+                U->>F: Ingresa credenciales
+                F->>B: POST /login
+                B->>DB: SELECT * WHERE email=? AND contrasena=?
+                DB-->>B: Usuario válido y activo
+                B-->>F: HTTP 200 (Login Exitoso)
+                F-->>U: Accede al Index Principal
+        </div>
+    </div>
+
+    <div class="diagrama-section">
+        <h2>2. Flujo de Compras (Gestión de Carrito y Checkout)</h2>
+        <div class="mermaid">
+            sequenceDiagram
+                actor C as Comprador
+                participant F as Frontend
+                participant B as Backend (Node.js)
+                participant DB as MySQL
+
+                %% Agregar y quitar
+                C->>F: Clic en "Agregar al carrito"
+                F->>B: POST /carrito/agregar
+                B->>DB: INSERT/UPDATE detalle_carrito
+                B-->>F: Carrito actualizado (HTTP 200)
+                
+                C->>F: Clic en "Quitar producto"
+                F->>B: DELETE /carrito/quitar
+                B->>DB: DELETE FROM detalle_carrito
+                B-->>F: Producto removido
+                
+                %% Checkout
+                C->>F: Clic en "Comprar" (Checkout)
+                F->>B: POST /checkout
+                B->>DB: Crea registro en 'pedidos'
+                B->>DB: Vacía el 'carrito' del usuario
+                B-->>F: Confirmación de Pedido Creado
+                F-->>C: Muestra pantalla de éxito
+        </div>
+    </div>
+
+    <div class="diagrama-section">
+        <h2>3. Flujo de Cuenta (Actualizar Perfil y Restablecer Contraseña)</h2>
+        <div class="mermaid">
+            sequenceDiagram
+                actor U as Usuario
+                participant F as Frontend
+                participant B as Backend (Node.js)
+                participant DB as MySQL
+                participant M as Nodemailer
+
+                %% Restablecer Contraseña
+                U->>F: Solicita restablecer contraseña
+                F->>B: POST /recuperar-password
+                B->>M: Envía enlace o código al correo
+                U->>F: Ingresa nueva contraseña
+                F->>B: POST /actualizar-password
+                B->>DB: UPDATE usuarios SET contrasena=?
+                B-->>F: Contraseña actualizada
+                
+                %% Actualizar Perfil
+                U->>F: Edita datos en Mi Perfil
+                F->>B: PUT /perfil/actualizar
+                B->>DB: UPDATE usuarios / vendedores
+                DB-->>B: Datos guardados
+                B-->>F: Confirmación de actualización
+                F-->>U: Interfaz actualizada con nuevos datos
+        </div>
+    </div>
+
+</body>
+</html>

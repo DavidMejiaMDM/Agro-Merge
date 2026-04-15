@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Componentes - Agro-Merge</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <script>
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                primaryBorderColor: '#4CAF50',
+                primaryTextColor: '#333333',
+                lineColor: '#2e7d32',
+                clusterBkg: '#f9fbf9',
+                clusterBorder: '#c8e6c9',
+                fontFamily: 'Segoe UI, sans-serif',
+                fontSize: '14px'
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #1b5e20; margin: 0 0 10px 0; font-size: 2.2rem; }
+        .header p { color: #666; margin: 0; }
+        .contenedor-diagrama {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Agro-Merge</h1>
+        <p>Diagrama de Componentes y Arquitectura Web</p>
+    </div>
+
+    <div class="contenedor-diagrama">
+        <div class="mermaid">
+            flowchart LR
+                subgraph CapaFrontend ["Capa Cliente Web (HTML, CSS, JS Vanilla)"]
+                    VistasPublicas["Vistas Públicas<br>• Index principal<br>• Index<br>• Contactos<br>• Productos"]
+                    VistasAuth["Seguridad y Acceso<br>• Login & Registro<br>• Confirmar código<br>• Correo verificado<br>• Restablecer contraseña<br>• Nueva contraseña"]
+                    VistasPrivadas["Zona de Usuarios<br>• Usuario comprador<br>• Perfil vendedor<br>• Carrito<br>• Checkout"]
+                end
+
+                subgraph CapaBackend ["Capa de Servidor"]
+                    NodeJS{"Servidor Node.js<br>(servidor.js)"}
+                end
+
+                subgraph CapaDatos ["Capa de Base de Datos"]
+                    MySQL[("MySQL Workbench<br>(agro_merge_db)")]
+                end
+
+                VistasPublicas -->|Peticiones HTTP| NodeJS
+                VistasAuth -->|Peticiones HTTP| NodeJS
+                VistasPrivadas -->|Peticiones HTTP| NodeJS
+                
+                NodeJS <-->|Consultas SQL mysql2| MySQL
+                
+                style VistasPublicas fill:#ffffff,stroke:#4CAF50,stroke-width:2px,color:#333
+                style VistasAuth fill:#ffffff,stroke:#4CAF50,stroke-width:2px,color:#333
+                style VistasPrivadas fill:#ffffff,stroke:#4CAF50,stroke-width:2px,color:#333
+                style NodeJS fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,color:#1b5e20
+                style MySQL fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,color:#1b5e20
+        </div>
+    </div>
+
+</body>
+</html>
