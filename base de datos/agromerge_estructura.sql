@@ -382,5 +382,8 @@ USE agro_merge_db;
 
 DELETE FROM usuarios WHERE email = 'mdm3oficial@gmail.com';
 
-ALTER TABLE usuarios ADD COLUMN telefono VARCHAR(20);
+ALTER TABLE usuarios ADD COLUMN direccion VARCHAR(255);
 
+SELECT * FROM usuarios;
+
+UPDATE usuarios SET documento = '1020304050' WHERE email = 'mdm3oficial@gmail.com';
