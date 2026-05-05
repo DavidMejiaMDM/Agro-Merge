@@ -1,0 +1,331 @@
+/* =========================================
+   VARIABLES Y RESET
+========================================= */
+:root {
+    --primary-green: #297b41;
+    --light-green: #eef7f0;
+    --border-green: #aed5b8;
+    --text-dark: #333333;
+    --text-gray: #666666;
+    --bg-light: #fdfdfd;
+    --bg-footer: #f7f7f7;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+/* =========================================
+   HEADER / NAVBAR
+========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: white;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 14px;
+    margin-right: 30px;
+    transition: color 0.3s;
+}
+
+.nav-links a.active, 
+.nav-links a:hover {
+    color: var(--primary-green);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-green);
+    border: 1px solid var(--border-green);
+    border-radius: 25px;
+    padding: 8px 20px;
+    width: 350px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    color: var(--primary-green);
+    font-size: 14px;
+}
+
+.search-bar input::placeholder {
+    color: #8ab896;
+}
+
+.search-bar i {
+    color: var(--primary-green);
+    cursor: pointer;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.login-btn a {
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.login-btn i {
+    font-size: 18px;
+    color: var(--primary-green);
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero-wrapper {
+    padding: 20px 5%;
+}
+
+.hero {
+    /* Imagen de cultivo agrícola con filtro oscuro para leer el texto */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1920&q=80') center/cover;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* =========================================
+   TARJETAS GLOBALES (Misión, Visión, Valores)
+========================================= */
+.card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: white;
+    border: 1px solid var(--border-green);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.icon-container {
+    font-size: 35px;
+    color: var(--primary-green);
+    min-width: 50px;
+}
+
+.card-text h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-text p {
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+/* =========================================
+   MISIÓN Y VISIÓN
+========================================= */
+.mission-vision {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 40px 5%;
+}
+
+/* =========================================
+   HISTORIA
+========================================= */
+.history {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 40px 5%;
+    align-items: center;
+}
+
+.history-content h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.history-content p {
+    color: var(--text-gray);
+    margin-bottom: 20px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.history-image img {
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   VALORES
+========================================= */
+.values {
+    padding: 40px 5% 80px;
+}
+
+.values h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* =========================================
+   FOOTER / NEWSLETTER
+========================================= */
+footer {
+    background-color: var(--bg-footer);
+    padding: 50px 5%;
+    border-top: 1px solid #eaeaea;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.newsletter-info {
+    flex: 1;
+}
+
+.newsletter-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.newsletter-info p {
+    color: var(--text-gray);
+    font-size: 13px;
+}
+
+.newsletter-form {
+    display: flex;
+    flex: 1;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    height: 45px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    border: none;
+    padding: 0 20px;
+    outline: none;
+}
+
+.newsletter-form button {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0 30px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #1e5a2e;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--text-dark);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-green);
+}
+
+/* =========================================
+   RESPONSIVO (Móviles y Tablets)
+========================================= */
+@media (max-width: 1024px) {
+    .history {
+        grid-template-columns: 1fr;
+    }
+    .mission-vision {
+        grid-template-columns: 1fr;
+    }
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .newsletter-form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-links a {
+        margin: 0 10px;
+    }
+}
