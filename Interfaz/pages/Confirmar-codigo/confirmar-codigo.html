@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <title>Confirmación de registro - Agro-Merge</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Confirmación de registro - Agro-Merge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="../../eCommerceAssets/styles/styles.css">
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="../../eCommerceAssets/styles/styles.css" />
 </head>
 <body>
-    <div class="styles-layout">
-        <main class="styles-panel">
-            <header class="styles-panel__header">
-                <div class="logo">
-                    <img src="../../eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
-                    <span class="logo__text">Agro-Merge</span>
-                </div>
-            </header>
+  <div class="styles-layout">
+    <main class="styles-panel">
+      <header class="styles-panel__header">
+        <div class="logo">
+          <img src="../../eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
+          <span class="logo__text">Agro-Merge</span>
+        </div>
+      </header>
 
-            <section class="styles-panel__body">
-                <h1 class="styles-title">Confirmación de registro</h1>
-                <p class="styles-subtitle">
-                    Ingresa el código de verificación que enviamos a: <br>
-                    <strong id="displayEmail" style="color: #16a34a;">Cargando correo...</strong>
-                </p>
+      <section class="styles-panel__body">
+        <h1 class="styles-title">Confirmación de registro</h1>
+        <p class="styles-subtitle">
+          Ingresa el código de verificación que enviamos a: <br />
+          <strong id="displayEmail" style="color: #16a34a;">Cargando correo...</strong>
+        </p>
 
-                <form id="verifyForm" action="http://localhost:3000/verificar-codigo" method="POST">
-                    <input type="hidden" name="correo_usuario" id="hiddenEmail">
+        <form id="verifyForm" action="http://localhost:3000/verificar-codigo" method="POST">
+          <input type="hidden" name="correo_usuario" id="hiddenEmail" />
 
-                    <div class="code-inputs" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-                        <input type="text" name="d1" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
-                        <input type="text" name="d2" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
-                        <input type="text" name="d3" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
-                        <input type="text" name="d4" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*">
-                    </div>
+          <div class="code-inputs" style="display:flex;justify-content:center;gap:10px;margin-top:20px;">
+            <input type="text" name="d1" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" name="d2" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" name="d3" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" name="d4" maxlength="1" required class="code-box" inputmode="numeric" pattern="[0-9]*" />
+          </div>
 
-                    <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: 25px;">
-                        Verificar
-                    </button>
-                </form>
-            </section>
+          <button type="submit" class="btn btn--primary" style="width:100%;margin-top:25px;">
+            Verificar
+          </button>
+        </form>
+      </section>
 
-            <footer class="styles-panel__footer">
-                <span>Todos los derechos reservados © Agromerge</span>
-                <span>Política de Privacidad</span>
-            </footer>
-        </main>
+      <footer class="styles-panel__footer">
+        <span>Todos los derechos reservados © Agromerge</span>
+        <span>Política de Privacidad</span>
+      </footer>
+    </main>
 
-        <aside class="styles-image"></aside>
-    </div>
+    <aside class="styles-image"></aside>
+  </div>
 
-    <script src="../js/confirmar-codigo.js"></script>
+  <script src="../js/confirmar-codigo.js"></script>
 </body>
 </html>

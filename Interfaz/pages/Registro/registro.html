@@ -5,7 +5,7 @@
   <title>Registro - Agro-Merge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
-  <link href="../../eCommerceAssets/styles/styles.css" rel="stylesheet" type="text/css">
+  <link href="../../eCommerceAssets/styles/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="styles-layout">
@@ -19,12 +19,12 @@
 
       <section class="styles-panel__body">
         <h1 class="styles-title">Crea tu cuenta</h1>
-        <p class="styles-subtitle">Regístrate y empieza a comprar.</p>
+        <p class="styles-subtitle">Regístrate y empieza a comprar o vender.</p>
 
         <div class="role-tabs">
-          <input type="radio" id="tab-comprador" name="rol" checked />
-          <input type="radio" id="tab-vendedor" name="rol" />
-          <input type="radio" id="tab-empresa" name="rol" />
+          <input type="radio" id="tab-comprador" name="rol-tab" checked />
+          <input type="radio" id="tab-vendedor" name="rol-tab" />
+          <input type="radio" id="tab-empresa" name="rol-tab" />
 
           <div class="role-tabs__headers">
             <label for="tab-comprador" class="role-tabs__tab">Comprador</label>
@@ -33,54 +33,53 @@
           </div>
 
           <div class="role-tabs__content">
-            
+            <!-- COMPRADOR -->
             <div class="role-pane role-pane--comprador">
-              <form class="form" action="http://localhost:3000/registro" method="POST">
-                
+              <form class="form" action="http://localhost:3000/registro" method="POST" novalidate>
+                <input type="hidden" name="rol_usuario" value="comprador" />
+
                 <div class="form-group">
-                  <label>Nombre</label>
-                  <input type="text" name="nombre_usuario" placeholder="Nombre completo" required />
+                  <label for="nombre_comprador">Nombre</label>
+                  <input id="nombre_comprador" type="text" name="nombre_usuario" placeholder="Nombre completo" required />
                 </div>
 
                 <div class="form-group">
-                  <label>Tipo Documento</label>
-                  <input type="text" value="Cédula de Ciudadanía" class="input-readonly" readonly />
+                  <label for="tipo_doc_comprador">Tipo Documento</label>
+                  <input id="tipo_doc_comprador" type="text" value="Cédula de Ciudadanía" class="input-readonly" readonly />
                 </div>
 
                 <div class="form-group">
-                  <label>Documento</label>
-                  <input type="text" name="documento_usuario" placeholder="0123456789" required />
+                  <label for="documento_comprador">Documento</label>
+                  <input id="documento_comprador" type="text" name="documento_usuario" placeholder="0123456789" required />
                 </div>
 
                 <div class="form-row-2">
                   <div class="form-group">
-                    <label>Celular</label>
-                    <input type="text" value="+57" class="input-readonly" readonly />
+                    <label for="prefijo_comprador">Prefijo</label>
+                    <input id="prefijo_comprador" type="text" value="+57" class="input-readonly" readonly />
                   </div>
                   <div class="form-group">
-                    <label>&nbsp;</label>
-                    <input type="tel" name="telefono_usuario" placeholder="3137777777" required />
+                    <label for="telefono_comprador">Celular</label>
+                    <input id="telefono_comprador" type="tel" name="telefono_usuario" placeholder="3137777777" required />
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label>Correo</label>
-                  <input type="email" name="correo_usuario" placeholder="usuario@gmail.com" required />
+                  <label for="correo_comprador">Correo</label>
+                  <input id="correo_comprador" type="email" name="correo_usuario" placeholder="usuario@gmail.com" required />
                 </div>
 
                 <div class="form-group">
-                  <label>Contraseña</label>
-                  <input type="password" name="clave_usuario" placeholder="********" required />
+                  <label for="clave_comprador">Contraseña</label>
+                  <input id="clave_comprador" type="password" name="clave_usuario" placeholder="********" required />
                 </div>
 
                 <div class="form-group">
-                  <label>Verificar Contraseña</label>
-                  <input type="password" placeholder="********" required />
+                  <label for="confirmar_clave_comprador">Verificar Contraseña</label>
+                  <input id="confirmar_clave_comprador" type="password" name="confirmar_clave_usuario" placeholder="********" required />
                 </div>
 
-                <button type="submit" class="btn btn--primary">
-                  Registrarse
-                </button>
+                <button type="submit" class="btn btn--primary">Registrarse</button>
 
                 <p class="styles-footer-text">
                   ¿Ya tienes una cuenta?
@@ -89,71 +88,102 @@
               </form>
             </div>
 
+            <!-- VENDEDOR -->
             <div class="role-pane role-pane--vendedor">
-              <form class="form" action="http://localhost:3000/registro" method="POST">
-                
+              <form class="form" action="http://localhost:3000/registro" method="POST" novalidate>
                 <input type="hidden" name="rol_usuario" value="vendedor" />
-                
+
                 <div class="form-group">
-                  <label>Nombre</label>
-                  <input type="text" name="nombre_usuario" placeholder="Nombre vendedor" required />
+                  <label for="nombre_vendedor">Nombre</label>
+                  <input id="nombre_vendedor" type="text" name="nombre_usuario" placeholder="Nombre vendedor" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Documento</label>
-                  <input type="text" name="documento_usuario" placeholder="0123456789" required />
+                  <label for="tipo_doc_vendedor">Tipo Documento</label>
+                  <input id="tipo_doc_vendedor" type="text" value="Cédula de Ciudadanía" class="input-readonly" readonly />
                 </div>
+
                 <div class="form-group">
-                  <label>Celular</label>
-                  <input type="tel" name="telefono_usuario" placeholder="+57 3000000000" required />
+                  <label for="documento_vendedor">Documento</label>
+                  <input id="documento_vendedor" type="text" name="documento_usuario" placeholder="0123456789" required />
                 </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="prefijo_vendedor">Prefijo</label>
+                    <input id="prefijo_vendedor" type="text" value="+57" class="input-readonly" readonly />
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono_vendedor">Celular</label>
+                    <input id="telefono_vendedor" type="tel" name="telefono_usuario" placeholder="3000000000" required />
+                  </div>
+                </div>
+
                 <div class="form-group">
-                  <label>Correo</label>
-                  <input type="email" name="correo_usuario" placeholder="usuario@gmail.com" required />
+                  <label for="correo_vendedor">Correo</label>
+                  <input id="correo_vendedor" type="email" name="correo_usuario" placeholder="vendedor@gmail.com" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Contraseña</label>
-                  <input type="password" name="clave_usuario" placeholder="********" required />
+                  <label for="clave_vendedor">Contraseña</label>
+                  <input id="clave_vendedor" type="password" name="clave_usuario" placeholder="********" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Verificar Contraseña</label>
-                  <input type="password" placeholder="********" required />
+                  <label for="confirmar_clave_vendedor">Verificar Contraseña</label>
+                  <input id="confirmar_clave_vendedor" type="password" name="confirmar_clave_usuario" placeholder="********" required />
                 </div>
-                
-                <button type="submit" class="btn btn--primary">
-                  Registrarse como vendedor
-                </button>
+
+                <button type="submit" class="btn btn--primary">Registrarse como vendedor</button>
+
+                <p class="styles-footer-text">
+                  ¿Ya tienes una cuenta?
+                  <a href="../Login/login.html" class="link">Inicia sesión</a>
+                </p>
               </form>
             </div>
 
+            <!-- EMPRESA -->
             <div class="role-pane role-pane--empresa">
-              <form class="form">
+              <form class="form" action="http://localhost:3000/registro" method="POST" novalidate>
+                <input type="hidden" name="rol_usuario" value="empresa" />
+
                 <div class="form-group">
-                  <label>Nombre de la empresa</label>
-                  <input type="text" placeholder="Razón social" />
+                  <label for="nombre_empresa">Nombre de la empresa</label>
+                  <input id="nombre_empresa" type="text" name="nombre_usuario" placeholder="Razón social" required />
                 </div>
+
                 <div class="form-group">
-                  <label>NIT</label>
-                  <input type="text" placeholder="900123456" />
+                  <label for="nit_empresa">NIT</label>
+                  <input id="nit_empresa" type="text" name="documento_usuario" placeholder="900123456" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Correo</label>
-                  <input type="email" placeholder="contacto@empresa.com" />
+                  <label for="telefono_empresa">Celular</label>
+                  <input id="telefono_empresa" type="tel" name="telefono_usuario" placeholder="3000000000" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Celular</label>
-                  <input type="tel" placeholder="+57 3000000000" />
+                  <label for="correo_empresa">Correo</label>
+                  <input id="correo_empresa" type="email" name="correo_usuario" placeholder="contacto@empresa.com" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Contraseña</label>
-                  <input type="password" placeholder="********" />
+                  <label for="clave_empresa">Contraseña</label>
+                  <input id="clave_empresa" type="password" name="clave_usuario" placeholder="********" required />
                 </div>
+
                 <div class="form-group">
-                  <label>Verificar Contraseña</label>
-                  <input type="password" placeholder="********" />
+                  <label for="confirmar_clave_empresa">Verificar Contraseña</label>
+                  <input id="confirmar_clave_empresa" type="password" name="confirmar_clave_usuario" placeholder="********" required />
                 </div>
-                <button type="submit" class="btn btn--primary">
-                  Registrarse como empresa
-                </button>
+
+                <button type="submit" class="btn btn--primary">Registrarse como empresa</button>
+
+                <p class="styles-footer-text">
+                  ¿Ya tienes una cuenta?
+                  <a href="../Login/login.html" class="link">Inicia sesión</a>
+                </p>
               </form>
             </div>
           </div>

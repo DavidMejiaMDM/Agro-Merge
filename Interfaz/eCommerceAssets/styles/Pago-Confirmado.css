@@ -1,0 +1,359 @@
+/* ==============================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+============================================== */
+:root {
+    --green-dark: #1b5e20; /* Verde oscuro de los botones */
+    --green-primary: #43a047; /* Verde medio */
+    --green-light: #f4fdf4; /* Fondo del buscador */
+    --green-border: #c8e6c9;
+    --text-dark: #111111;
+    --text-gray: #555555;
+    --text-light-gray: #888888;
+    --bg-white: #ffffff;
+    --bg-footer: #f9f9f9;
+    
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==============================================
+   HEADER (NAVEGACIÓN)
+============================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0 35px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 35px;
+    height: 35px;
+    background-color: #fdf6e3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d4a373;
+    border: 1px solid #eaddcf;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 30px;
+    transition: color 0.2s;
+    font-family: var(--font-heading);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--green-primary);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--green-light);
+    border: 1px solid var(--green-border);
+    border-radius: 50px;
+    padding: 10px 20px;
+    width: 320px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    color: var(--text-dark);
+    font-size: 13px;
+}
+
+.search-bar i {
+    color: var(--green-primary);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-btn a {
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.login-btn i {
+    color: var(--green-primary);
+    font-size: 18px;
+}
+
+/* ==============================================
+   CONTENIDO PRINCIPAL (PAGO CONFIRMADO)
+============================================== */
+.main-content {
+    padding: 40px 0 80px 0;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.page-header span {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-light-gray);
+}
+
+.confirmation-card {
+    background-color: var(--bg-white);
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1000px; /* Ancho similar al de tu imagen */
+    margin: 0 auto;
+}
+
+/* Ícono del Check */
+.success-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--green-dark);
+    color: var(--green-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin: 0 auto 25px auto;
+}
+
+.confirmation-card h2 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.confirmation-card p {
+    color: var(--text-gray);
+    font-size: 15px;
+    max-width: 550px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* Botones */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn {
+    width: 100%;
+    max-width: 450px;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--green-dark);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #144618;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--green-dark);
+    border: 1px solid var(--green-dark);
+}
+
+.btn-outline:hover {
+    background-color: var(--green-light);
+}
+
+/* ==============================================
+   FOOTER Y NEWSLETTER
+============================================== */
+footer {
+    background-color: var(--bg-footer);
+    padding: 50px 0;
+    border-top: 1px solid #eaeaea;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer-text {
+    flex: 1.2;
+}
+
+.footer-text h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.footer-text p {
+    color: var(--text-gray);
+    font-size: 13px;
+}
+
+.newsletter-form {
+    flex: 1;
+    display: flex;
+    background: var(--bg-white);
+    border: 1px solid #e0e0e0;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    background: transparent;
+}
+
+.newsletter-form button {
+    background-color: var(--green-dark);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #144618;
+}
+
+.socials {
+    display: flex;
+    gap: 12px;
+}
+
+.socials a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--green-dark);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.socials a:hover {
+    transform: translateY(-3px);
+    background-color: #144618;
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN
+============================================== */
+@media (max-width: 992px) {
+    .footer-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+    .newsletter-form {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-bar {
+        width: 100%;
+    }
+    .confirmation-card {
+        padding: 40px 20px;
+    }
+    .confirmation-card h2 {
+        font-size: 26px;
+    }
+}
