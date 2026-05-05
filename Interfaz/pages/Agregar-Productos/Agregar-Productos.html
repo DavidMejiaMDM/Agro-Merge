@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrega tus productos - Agro-Merge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/Interfaz/eCommerceAssets/styles/Agregar-Productos.css">
+</head>
+<body>
+
+    <div class="page-wrapper">
+        
+        <div class="form-container">
+            
+            <div class="header-section">
+                <div class="brand-logo">
+                    <div class="logo-placeholder">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <span class="brand-text">Agro-Merge</span>
+                </div>
+                <h1>Completa tu perfil</h1>
+                <p>Agrega tus productos y precios</p>
+            </div>
+
+            <form class="product-form" id="formulario_producto">
+                
+                <div class="input-group">
+                    <label for="nombre_producto">Nombre del producto</label>
+                    <input type="text" id="nombre_producto" placeholder="Ej. Maíz dulce" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="precio">Precio</label>
+                    <input type="text" id="precio" placeholder="Ej. 1500" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="tipo_venta">Tipo de venta</label>
+                    <div class="select-wrapper">
+                        <select id="tipo_venta" required>
+                            <option value="" disabled selected>Selecciona el tipo</option>
+                            <option value="LB/UND">LB/UND</option>
+                            <option value="KG">Kilogramo (KG)</option>
+                            <option value="Bulto">Bulto / Saco</option>
+                            <option value="Caja">Caja</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+
+                <div class="secondary-actions">
+                    
+                    <input type="file" id="input_imagen_oculto" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                    
+                    <button type="button" class="btn-outline" id="btn_subir_imagen">
+                        <i class="fas fa-image"></i> <span id="texto_btn_imagen">Subir imagen</span>
+                    </button>
+                    
+                    <button type="button" class="btn-outline" id="btn_anadir_extra">
+                        <i class="fas fa-plus"></i> Añadir producto
+                    </button>
+                </div>
+
+                <button type="submit" class="btn-primary">Finalizar</button>
+                
+                <p class="bottom-text">Agrega tus productos y precios</p>
+            </form>
+
+        </div>
+
+        <footer class="page-footer">
+            <span>Todos los derechos reservados © Agromerge</span>
+            <a href="#">Política de Privacidad</a>
+        </footer>
+
+    </div>
+
+    <script src="/Interfaz/eCommerceAssets/styles/Agregar-Productos.css"></script>
+</body>
+</html>

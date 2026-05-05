@@ -1,14 +1,16 @@
 /* ==============================================
-   VARIABLES Y CONFIGURACIÓN GLOBAL
+   VARIABLES GLOBALES
 ============================================== */
 :root {
-    --green-dark: #1b5e20; /* Verde oscuro de los botones */
-    --green-primary: #43a047; /* Verde medio */
-    --green-light: #f4fdf4; /* Fondo del buscador */
+    --green-dark: #1e6c31;    /* Verde de los botones primarios */
+    --green-light: #f4fdf4;   /* Fondo del buscador */
     --green-border: #c8e6c9;
+    --green-text: #66bb6a;    /* Verde para el texto activo en el nav */
+    
     --text-dark: #111111;
     --text-gray: #555555;
-    --text-light-gray: #888888;
+    --text-light: #888888;
+    
     --bg-white: #ffffff;
     --bg-footer: #f9f9f9;
     
@@ -26,33 +28,41 @@ body {
     font-family: var(--font-body);
     color: var(--text-dark);
     background-color: var(--bg-white);
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Contenedor central (limita el ancho en pantallas gigantes) */
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 /* ==============================================
-   HEADER (NAVEGACIÓN)
+   CABECERA (HEADER)
 ============================================== */
-header {
+.main-header {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 0;
+    background-color: var(--bg-white);
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 0 35px 0;
-    border-bottom: 1px solid #f0f0f0;
 }
 
-.logo {
+.brand-logo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.logo-icon {
+.logo-placeholder {
     width: 35px;
     height: 35px;
     background-color: #fdf6e3;
@@ -64,11 +74,16 @@ header {
     border: 1px solid #eaddcf;
 }
 
-.logo-text {
+.brand-text {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 18px;
     letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
 }
 
 .nav-links a {
@@ -76,13 +91,12 @@ header {
     color: var(--text-dark);
     font-weight: 500;
     font-size: 14px;
-    margin-right: 30px;
-    transition: color 0.2s;
     font-family: var(--font-heading);
+    transition: color 0.2s;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--green-primary);
+.nav-links a.active, .nav-links a:hover {
+    color: var(--green-text);
 }
 
 .search-bar {
@@ -90,9 +104,9 @@ header {
     align-items: center;
     background-color: var(--green-light);
     border: 1px solid var(--green-border);
-    border-radius: 50px;
+    border-radius: 30px;
     padding: 10px 20px;
-    width: 320px;
+    width: 300px;
 }
 
 .search-bar input {
@@ -100,12 +114,12 @@ header {
     background: transparent;
     outline: none;
     width: 100%;
-    color: var(--text-dark);
     font-size: 13px;
+    color: var(--text-dark);
 }
 
 .search-bar i {
-    color: var(--green-primary);
+    color: var(--green-text);
     font-size: 14px;
     cursor: pointer;
 }
@@ -120,82 +134,81 @@ header {
     cursor: pointer;
 }
 
-.login-btn a {
-    text-decoration: none;
-    color: var(--text-dark);
-}
-
 .login-btn i {
-    color: var(--green-primary);
+    color: var(--green-text);
     font-size: 18px;
 }
 
 /* ==============================================
-   CONTENIDO PRINCIPAL (PAGO CONFIRMADO)
+   CONTENIDO PRINCIPAL
 ============================================== */
 .main-content {
-    padding: 40px 0 80px 0;
+    flex-grow: 1; /* Empuja el footer hacia abajo */
+    padding: 40px 20px 80px 20px;
 }
 
-.page-header {
-    margin-bottom: 30px;
-}
-
-.page-header h1 {
-    font-family: var(--font-heading);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text-dark);
+.page-title {
     display: flex;
     align-items: baseline;
     gap: 10px;
+    margin-bottom: 30px;
 }
 
-.page-header span {
-    font-family: var(--font-body);
+.page-title h1 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.page-title .item-count {
+    font-family: var(--font-heading);
     font-size: 16px;
     font-weight: 500;
-    color: var(--text-light-gray);
+    color: var(--text-gray);
 }
 
+/* ==============================================
+   TARJETA CENTRAL (CHECKOUT EXITOSO)
+============================================== */
 .confirmation-card {
     background-color: var(--bg-white);
-    border: 1px solid #eaeaea;
+    border: 1px solid #e0e0e0;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     padding: 60px 20px;
     text-align: center;
-    max-width: 1000px; /* Ancho similar al de tu imagen */
+    max-width: 900px; /* Ancho idéntico al de tu imagen */
     margin: 0 auto;
 }
 
-/* Ícono del Check */
 .success-icon {
     width: 90px;
     height: 90px;
     border-radius: 50%;
     border: 3px solid var(--green-dark);
-    color: var(--green-dark);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
     margin: 0 auto 25px auto;
+}
+
+.success-icon i {
+    font-size: 40px;
+    color: var(--green-dark);
 }
 
 .confirmation-card h2 {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    color: var(--text-dark);
     margin-bottom: 15px;
 }
 
-.confirmation-card p {
+.confirmation-text {
+    font-size: 14px;
     color: var(--text-gray);
-    font-size: 15px;
-    max-width: 550px;
-    margin: 0 auto 40px auto;
+    max-width: 500px;
+    margin: 0 auto 35px auto;
     line-height: 1.6;
 }
 
@@ -211,9 +224,9 @@ header {
     width: 100%;
     max-width: 450px;
     padding: 14px 20px;
-    border-radius: 50px;
+    border-radius: 30px;
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -221,12 +234,12 @@ header {
 
 .btn-primary {
     background-color: var(--green-dark);
-    color: white;
+    color: #ffffff;
     border: none;
 }
 
 .btn-primary:hover {
-    background-color: #144618;
+    background-color: #144f23;
 }
 
 .btn-outline {
@@ -240,120 +253,113 @@ header {
 }
 
 /* ==============================================
-   FOOTER Y NEWSLETTER
+   FOOTER
 ============================================== */
-footer {
+.main-footer {
     background-color: var(--bg-footer);
     padding: 50px 0;
     border-top: 1px solid #eaeaea;
 }
 
-.footer-wrapper {
+.footer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 40px;
 }
 
-.footer-text {
+.footer-info {
     flex: 1.2;
 }
 
-.footer-text h3 {
+.footer-info h3 {
     font-family: var(--font-heading);
     font-size: 18px;
-    margin-bottom: 8px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
-.footer-text p {
-    color: var(--text-gray);
+.footer-info p {
     font-size: 13px;
+    color: var(--text-gray);
+    line-height: 1.5;
 }
 
-.newsletter-form {
+.newsletter-box {
     flex: 1;
     display: flex;
-    background: var(--bg-white);
-    border: 1px solid #e0e0e0;
-    border-radius: 50px;
+    background-color: var(--bg-white);
+    border: 1px solid #ddd;
+    border-radius: 30px;
     padding: 5px;
+    height: 50px;
 }
 
-.newsletter-form input {
+.newsletter-box input {
     flex: 1;
     border: none;
     outline: none;
     padding: 0 20px;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 13px;
     background: transparent;
 }
 
-.newsletter-form button {
+.btn-subscribe {
     background-color: var(--green-dark);
     color: white;
     border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
+    padding: 0 25px;
+    border-radius: 30px;
     font-family: var(--font-heading);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 13px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
-.newsletter-form button:hover {
-    background-color: #144618;
+.btn-subscribe:hover {
+    background-color: #144f23;
 }
 
-.socials {
+.social-icons {
     display: flex;
-    gap: 12px;
+    gap: 10px;
 }
 
-.socials a {
+.social-icons a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: var(--green-dark);
     color: white;
     border-radius: 50%;
     text-decoration: none;
+    font-size: 14px;
     transition: transform 0.2s, background 0.3s;
 }
 
-.socials a:hover {
+.social-icons a:hover {
     transform: translateY(-3px);
-    background-color: #144618;
+    background-color: #144f23;
 }
 
 /* ==============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (Móviles)
 ============================================== */
 @media (max-width: 992px) {
-    .footer-wrapper {
-        flex-direction: column;
-        text-align: center;
-    }
-    .newsletter-form {
-        width: 100%;
-        max-width: 500px;
-    }
-}
-
-@media (max-width: 768px) {
-    header {
+    .header-container {
         flex-direction: column;
         gap: 15px;
     }
-    .search-bar {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .newsletter-box {
         width: 100%;
-    }
-    .confirmation-card {
-        padding: 40px 20px;
-    }
-    .confirmation-card h2 {
-        font-size: 26px;
+        max-width: 400px;
     }
 }

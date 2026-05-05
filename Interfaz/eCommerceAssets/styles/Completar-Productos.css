@@ -1,0 +1,240 @@
+/* ==============================================
+   VARIABLES GLOBALES
+============================================== */
+:root {
+    /* Colores exactos basados en la imagen */
+    --green-dark: #1b5e20;
+    --green-gradient-start: #1e6c31;
+    --green-gradient-end: #7cb342;
+    --pill-bg: #dbe0f4; /* El tono lila/azulado de las pastillas */
+    --pill-text: #333333;
+    
+    --text-dark: #1a1a1a;
+    --text-gray: #777777;
+    --text-light: #999999;
+    
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #ffffff;
+    color: var(--text-dark);
+}
+
+/* ==============================================
+   LAYOUT DIVIDIDO (50 / 50)
+============================================== */
+.split-layout {
+    display: flex;
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    width: 100%;
+}
+
+/* ==============================================
+   PANEL IZQUIERDO (Formulario)
+============================================== */
+.left-panel {
+    flex: 1; /* Ocupa la mitad (50%) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    padding: 40px;
+    position: relative; /* Para poder posicionar el footer al fondo */
+}
+
+/* Contenedor central del formulario */
+.form-container {
+    width: 100%;
+    max-width: 450px; /* Evita que los botones se estiren demasiado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ----- LOGO ----- */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.logo-placeholder {
+    width: 35px;
+    height: 35px;
+    background-color: #fdf6e3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d4a373;
+    border: 1px solid #eaddcf;
+}
+
+.brand-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+}
+
+/* ----- TEXTOS HEADER ----- */
+.header-texts {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header-texts h1 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.header-texts p {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+/* ----- CUADRÍCULA DE PRODUCTOS ----- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 15px 20px; /* 15px de espacio vertical, 20px horizontal */
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.product-pill {
+    background-color: var(--pill-bg);
+    color: var(--pill-text);
+    border: 1px solid #cdd4ed;
+    border-radius: 25px; /* Bordes redondeados estilo pastilla */
+    padding: 10px 5px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Estado Seleccionado */
+.product-pill.selected {
+    background-color: var(--green-dark);
+    color: #ffffff;
+    border-color: var(--green-dark);
+}
+
+/* Efecto hover */
+.product-pill:hover:not(.selected) {
+    background-color: #c4cae6;
+}
+
+/* Botón Añadir (Ligeramente distinto si se desea) */
+.product-pill.add-btn {
+    grid-column: 3; /* Forzar que se posicione al final si hay espacios */
+}
+
+/* ----- BOTÓN CONTINUAR ----- */
+.continue-btn {
+    width: 100%;
+    /* Degradado verde tal como en la imagen */
+    background: linear-gradient(90deg, var(--green-gradient-start) 0%, var(--green-gradient-end) 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 14px;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.continue-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+}
+
+/* ----- FOOTER PANEL IZQUIERDO ----- */
+.panel-footer {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+.panel-footer a {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.panel-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==============================================
+   PANEL DERECHO (Imagen)
+============================================== */
+.right-panel {
+    flex: 1; /* Ocupa la otra mitad (50%) */
+    background-color: #f0f0f0;
+    height: 100vh;
+    overflow: hidden; /* Evita que la imagen sobresalga */
+}
+
+.right-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
+    object-position: center;
+}
+
+/* ==============================================
+   RESPONSIVO (Pantallas pequeñas y celulares)
+============================================== */
+@media (max-width: 900px) {
+    .split-layout {
+        flex-direction: column-reverse; /* Pone la imagen arriba y el formulario abajo */
+    }
+    
+    .right-panel {
+        height: 30vh; /* La imagen se vuelve un banner pequeño arriba */
+        min-height: 200px;
+    }
+    
+    .left-panel {
+        padding: 40px 20px;
+        justify-content: flex-start;
+    }
+
+    .panel-footer {
+        position: relative;
+        bottom: 0;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr); /* En celulares se ven 2 columnas para no apretar el texto */
+    }
+    .product-pill.add-btn {
+        grid-column: auto;
+    }
+}
