@@ -1,51 +1,88 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const contenedorProductos = document.getElementById('contenedor-productos');
-    const btnAnadir = document.getElementById('btn_anadir_mas');
+document.addEventListener('DOMContentLoaded', async () => {
+    const contenedor = document.getElementById('contenedor-productos');
+    const btnAnadirMas = document.getElementById('btn_anadir_mas');
     const btnContinuar = document.getElementById('btn_continuar');
 
-    // 1. Leer los productos desde LocalStorage
-    // (En la pantalla anterior debes guardarlos con este nombre)
-    let productosGuardados = JSON.parse(localStorage.getItem('mis_productos_agromerge')) || [];
+    function obtenerEmailProceso() {
+        const params = new URLSearchParams(window.location.search);
+        const emailQuery = params.get('email')?.trim().toLowerCase();
 
-    // 2. Si no hay productos guardados, simulamos los de tu imagen para que no se vea vacío
-    if (productosGuardados.length === 0) {
-        productosGuardados = [
-            { nombre: 'Maiz dulce', precio: '2,200.00', tipo_venta: 'lb', imagen: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=300&q=80' },
-            { nombre: 'Maiz dulce', precio: '2,200.00', tipo_venta: 'lb', imagen: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=300&q=80' },
-            { nombre: 'Maiz dulce', precio: '2,200.00', tipo_venta: 'lb', imagen: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=300&q=80' }
-        ];
+        if (emailQuery) {
+            localStorage.setItem('emailRegistroVendedor', emailQuery);
+            return emailQuery;
+        }
+
+        return (
+            localStorage.getItem('emailRegistroVendedor') ||
+            localStorage.getItem('usuario_email') ||
+            localStorage.getItem('userEmail') ||
+            ''
+        ).trim().toLowerCase();
     }
 
-    // 3. Función para renderizar el HTML de las tarjetas
-    const renderizarProductos = () => {
-        contenedorProductos.innerHTML = ''; // Limpiamos el contenedor
+    const emailProceso = obtenerEmailProceso();
 
-        productosGuardados.forEach(producto => {
-            // Creamos la estructura HTML de la tarjeta
-            const card = document.createElement('div');
-            card.className = 'product-card';
+    if (!emailProceso) {
+        contenedor.innerHTML = `
+            <div class="empty-state">
+                <p><strong>No se encontró el correo del proceso de registro.</strong></p>
+                <p style="margin-top:6px;">Vuelve al paso de registro de vendedor.</p>
+            </div>
+        `;
+        return;
+    }
 
-            card.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.nombre}" class="product-img">
-                <div class="product-name">${producto.nombre}</div>
-                <div class="product-price">$ ${producto.precio}/${producto.tipo_venta}</div>
+    const formatoPrecio = (valor) => new Intl.NumberFormat('es-CO').format(Number(valor) || 0);
+
+    function renderProductos(productos) {
+        if (!productos.length) {
+            contenedor.innerHTML = `
+                <div class="empty-state">
+                    <p><strong>Aún no has subido productos.</strong></p>
+                    <p style="margin-top:6px;">Regresa y añade al menos uno.</p>
+                </div>
             `;
+            return;
+        }
 
-            contenedorProductos.appendChild(card);
-        });
-    };
+        contenedor.innerHTML = productos.map((p) => `
+            <article class="product-card">
+                <img class="product-image" src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
+                <div class="product-body">
+                    <h3 class="product-name">${p.nombre}</h3>
+                    <div class="meta-row">
+                        <span class="price">$ ${formatoPrecio(p.precio)}</span>
+                        <span class="pill">${p.tipo_venta || 'N/A'}</span>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+    }
 
-    // Renderizamos al cargar la página
-    renderizarProductos();
+    async function cargarProductos() {
+        try {
+            const response = await fetch(`/api/productos?email=${encodeURIComponent(emailProceso)}`);
+            const data = await response.json();
 
-    // 4. Lógica de botones
-    btnAnadir.addEventListener('click', () => {
-        // Redirigir de vuelta al formulario anterior para agregar otro
-        window.location.href = 'agrega-productos.html'; // Cambia por el nombre real de tu archivo
+            if (!response.ok || !data.ok) {
+                contenedor.innerHTML = `<p>${data?.mensaje || 'No se pudieron cargar los productos.'}</p>`;
+                return;
+            }
+
+            renderProductos(data.productos || []);
+        } catch (error) {
+            console.error(error);
+            contenedor.innerHTML = '<p>Error de conexión al cargar productos.</p>';
+        }
+    }
+
+    btnAnadirMas?.addEventListener('click', () => {
+        window.location.href = '/pages/Agregar-Productos.html';
     });
 
-    btnContinuar.addEventListener('click', () => {
-        alert('¡Excelente! Inventario confirmado. Pasando al Dashboard del vendedor...');
-        // Aquí puedes hacer el window.location.href hacia tu página principal
+    btnContinuar?.addEventListener('click', () => {
+        alert('✅ Productos confirmados. Continúa al siguiente paso.');
     });
+
+    await cargarProductos();
 });

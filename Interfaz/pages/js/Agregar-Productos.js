@@ -1,104 +1,119 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Referencias a los elementos del DOM
     const form = document.getElementById('formulario_producto');
     const inputNombre = document.getElementById('nombre_producto');
     const inputPrecio = document.getElementById('precio');
     const selectTipoVenta = document.getElementById('tipo_venta');
-    
-    // Referencias para la imagen
     const inputImagenOculto = document.getElementById('input_imagen_oculto');
     const btnSubirImagen = document.getElementById('btn_subir_imagen');
     const textoBtnImagen = document.getElementById('texto_btn_imagen');
+    const btnAnadirExtra = document.getElementById('btn_anadir_extra');
 
-    /* ==========================================
-       1. VALIDACIONES EN TIEMPO REAL
-    ========================================== */
+    let ultimaImagenSeleccionada = null;
 
-    // VALIDACIÓN NOMBRE: Solo permite letras y espacios. Borra lo demás al instante.
-    inputNombre.addEventListener('input', function() {
+    function obtenerEmailProceso() {
+        const params = new URLSearchParams(window.location.search);
+        const emailQuery = params.get('email')?.trim().toLowerCase();
+
+        if (emailQuery) {
+            localStorage.setItem('emailRegistroVendedor', emailQuery);
+            return emailQuery;
+        }
+
+        return (
+            localStorage.getItem('emailRegistroVendedor') ||
+            localStorage.getItem('usuario_email') ||
+            localStorage.getItem('userEmail') ||
+            ''
+        ).trim().toLowerCase();
+    }
+
+    inputNombre.addEventListener('input', function () {
         this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
     });
 
-    // VALIDACIÓN PRECIO: Solo permite números. Borra lo demás al instante.
-    inputPrecio.addEventListener('input', function() {
+    inputPrecio.addEventListener('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
-    /* ==========================================
-       2. LÓGICA DE SUBIDA DE IMAGEN
-    ========================================== */
+    btnSubirImagen.addEventListener('click', () => inputImagenOculto.click());
 
-    // Al hacer clic en el botón bonito, simulamos un clic en el input oculto
-    btnSubirImagen.addEventListener('click', () => {
-        inputImagenOculto.click();
-    });
-
-    // Detectar cuando el usuario seleccionó una foto
-    inputImagenOculto.addEventListener('change', function() {
+    inputImagenOculto.addEventListener('change', function () {
         if (this.files && this.files[0]) {
-            // Mostrar el nombre del archivo en el botón
-            const nombreArchivo = this.files[0].name;
-            textoBtnImagen.textContent = nombreArchivo;
-            
-            // Poner el icono de color verde para indicar éxito
-            btnSubirImagen.querySelector('i').style.color = '#4caf50'; 
+            ultimaImagenSeleccionada = this.files[0];
+            textoBtnImagen.textContent = this.files[0].name;
+            btnSubirImagen.querySelector('i').style.color = '#4caf50';
         } else {
-            // Si cancela, vuelve a la normalidad
+            ultimaImagenSeleccionada = null;
             textoBtnImagen.textContent = 'Subir imagen';
             btnSubirImagen.querySelector('i').style.color = '';
         }
     });
 
-    /* ==========================================
-       3. ENVÍO DEL FORMULARIO A SERVER.JS
-    ========================================== */
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Evita recargar la página
+    function validarCampos() {
+        if (!inputNombre.value.trim()) return alert('⚠️ Ingresa el nombre del producto.'), false;
+        if (!inputPrecio.value.trim()) return alert('⚠️ Ingresa el precio del producto.'), false;
+        if (!selectTipoVenta.value) return alert('⚠️ Selecciona el tipo de venta.'), false;
+        if (!ultimaImagenSeleccionada) return alert('⚠️ Por favor, sube una foto del producto.'), false;
+        return true;
+    }
 
-        // Validar que realmente se haya subido una foto
-        if (!inputImagenOculto.files[0]) {
-            alert('⚠️ Por favor, sube una foto del producto antes de finalizar.');
-            return;
+    async function guardarProductoEnServidor() {
+        const emailProceso = obtenerEmailProceso();
+        if (!emailProceso) {
+            return { ok: false, data: { mensaje: 'No se encontró el correo del proceso de registro.' } };
         }
 
-        // Crear FormData para poder enviar el archivo y el texto juntos
         const formData = new FormData();
         formData.append('nombre', inputNombre.value.trim());
         formData.append('precio', inputPrecio.value.trim());
         formData.append('tipo_venta', selectTipoVenta.value);
-        formData.append('imagen_producto', inputImagenOculto.files[0]);
+        formData.append('email_usuario', emailProceso);
+        formData.append('imagen_producto', ultimaImagenSeleccionada);
 
-        console.log("Datos capturados, listos para enviar al servidor.");
+        const response = await fetch('/api/productos/agregar', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        return { ok: response.ok, data };
+    }
+
+    function resetearFormulario() {
+        form.reset();
+        ultimaImagenSeleccionada = null;
+        textoBtnImagen.textContent = 'Subir imagen';
+        btnSubirImagen.querySelector('i').style.color = '';
+    }
+
+    btnAnadirExtra.addEventListener('click', async () => {
+        if (!validarCampos()) return;
 
         try {
-            // ALERTA DE PRUEBA: Para que veas que funciona antes de conectar el backend
-            alert(`✅ ¡Todo correcto!\n\nSe enviará lo siguiente a la base de datos:\nProducto: ${inputNombre.value}\nPrecio: $${inputPrecio.value}\nTipo: ${selectTipoVenta.value}\nImagen: ${inputImagenOculto.files[0].name}`);
-            
-            /* ===================================================================
-            AQUÍ ESTÁ EL FETCH PARA CUANDO TENGAS LA RUTA EN TU SERVER.JS
-            ===================================================================
-            
-            const response = await fetch('http://localhost:3000/api/productos/agregar', {
-                method: 'POST',
-                body: formData // <-- No lleva Content-Type, FormData lo hace solo
-            });
+            const resultado = await guardarProductoEnServidor();
+            if (!resultado.ok) return alert(`❌ ${resultado.data?.mensaje || 'No se pudo guardar el producto.'}`);
 
-            const data = await response.json();
-
-            if (response.ok) {
-                alert('✅ Producto guardado exitosamente');
-                form.reset(); // Limpia los inputs
-                textoBtnImagen.textContent = 'Subir imagen'; // Resetea el botón visual
-                btnSubirImagen.querySelector('i').style.color = '';
-            } else {
-                alert('❌ Error al guardar: ' + data.mensaje);
-            }
-            */
-
+            alert('✅ Producto añadido correctamente.');
+            resetearFormulario();
         } catch (error) {
-            console.error('Error al enviar los datos:', error);
-            alert('Error de conexión con el servidor.');
+            console.error(error);
+            alert('❌ Error de conexión con el servidor.');
+        }
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validarCampos()) return;
+
+        try {
+            const resultado = await guardarProductoEnServidor();
+            if (!resultado.ok) return alert(`❌ ${resultado.data?.mensaje || 'No se pudo guardar el producto.'}`);
+
+            alert(' Producto guardado correctamente.');
+            window.location.href = '/pages/Agregar-Productos-Final/Agregar-Productos-Final.html';
+        } catch (error) {
+            console.error(error);
+            alert('❌ Error de conexión con el servidor.');
         }
     });
 });

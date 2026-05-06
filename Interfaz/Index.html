@@ -1,563 +1,398 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Agro-Merger | Inicio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="eCommerceAssets/styles/eCommerceStyle.css.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Agro-Merger | Inicio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="eCommerceAssets/styles/eCommerceStyle.css.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
 <div id="mainWrapper">
-    
-    <header> 
-        <div class="logo">
-          <img src="eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
-            <span class="logo__text">Agro-Merge</span>
-        </div>
-
-        <div id="headerLinks">
-            <a href="pages/Productos/Productos.html" title="Productos">Productos</a>
-            <a href="../Interfaz/pages/SobreNosotros/SobreNosotros.html" title="Noticias">Noticias</a>
-            <a href="pages/Contactos/Contactos.html">Contacto</a>
-        </div>
-            
-        <input type="search" placeholder="Buscar un producto..." class="search-input">
-        
-        <a href="pages/Login/login.html" title="Login" id="btn-login"><i class="fa-regular fa-user"></i> Iniciar Sesión</a>
-    </header>
-    
-    <section id="offer">
-        <div class="slider-container">
-            <div class="slide active">
-                <img src="eCommerceAssets/img/img1.png" alt="Oferta 1">
-            </div>
-            <div class="slide">
-                <img src="eCommerceAssets/img/img2.png" alt="Oferta 2">
-            </div>
-            <div class="slide">
-                <img src="eCommerceAssets/img/img3.png" alt="Oferta 3">
-            </div>
-
-            <button class="slider-button left"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="slider-button right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-    </section>
-    
-    <section class="imagen-seccion">
-        <img src="eCommerceAssets/img/bannerInformativo.svg" alt="Información Agro" class="imagen-svg">
-    </section>
-
-    <section class="productos-section">
-        <div class="productos-header">
-            <h2>Explora Nuestras Categorías</h2>
-            <a href="pages/Productos/Productos.html" class="ver-mas">
-                Ver todo <i class="fa-solid fa-angle-right"></i>
-            </a>
-        </div>
-
-        <div class="categorias">
-            <a href="pagina1.html" class="categoria">
-                <img src="eCommerceAssets/img/res.jpg" alt="Carne de Res">
-                <div class="cat-overlay"><h3>Ganadería</h3></div>
-            </a>
-            <a href="pagina2.html" class="categoria">
-                <img src="eCommerceAssets/img/leche.jpg" alt="Lácteos">
-                <div class="cat-overlay"><h3>Lácteos</h3></div>
-            </a>
-            <a href="pagina3.html" class="categoria">
-                <img src="eCommerceAssets/img/cafe.jpg" alt="Café">
-                <div class="cat-overlay"><h3>Café</h3></div>
-            </a>
-        </div>
-    </section>
-    
-    <section class="nueva-seccion">
-        <div class="nueva-header">
-            <h2>Nuestros Destacados</h2>
-        </div>
-        <div class="bloques">
-            <div class="bloque">
-                <img src="eCommerceAssets/img/ImgOff1.jpg" alt="Destacado 1">
-            </div>
-            <div class="bloque">
-                <img src="eCommerceAssets/img/ImgOff2.jpg" alt="Destacado 2">
-            </div>
-            <div class="bloque">
-                <img src="eCommerceAssets/img/ImgOff3.jpg" alt="Destacado 3">
-            </div>
-        </div>
-    </section>
-    
-    <section class="productos-destacados">
-        <div class="productos-header">
-            <h2>Productos del Día</h2>
-        </div>
-
-        <div class="productos-grid">
-            
-            <div class="producto">
-                <div class="producto-img">
-                    <img src="eCommerceAssets/img/maiz.jpg" alt="Maíz Híbrido">
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Maíz Híbrido (60kg)</h3>
-                    <p class="producto-precio">$139.990</p>
-                    <button class="btn-carrito" onclick="agregarAlCarrito('PROD_MAIZ', 'AgroField', 'Maíz Híbrido (60kg)', 139990, 'eCommerceAssets/img/maiz.jpg', 30)">
-                        <i class="fa-solid fa-cart-plus"></i> Agregar
-                    </button>
-                </div>
-            </div>
-
-            <div class="producto">
-                <div class="producto-img">
-                    <img src="eCommerceAssets/img/papa.jpg" alt="Papa Parda">
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Papa Parda (60kg)</h3>
-                    <p class="producto-precio">$100.000</p>
-                    <button class="btn-carrito" onclick="agregarAlCarrito('PROD_PAPA', 'AgroField', 'Papa Parda (60kg)', 100000, 'eCommerceAssets/img/papa.jpg', 25)">
-                        <i class="fa-solid fa-cart-plus"></i> Agregar
-                    </button>
-                </div>
-            </div>
-
-            <div class="producto producto-descuento">
-                <span class="badge">3% OFF</span>
-                <div class="producto-img">
-                    <img src="eCommerceAssets/img/platano.jpg" alt="Plátano Artón">
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Plátano Artón</h3>
-                    <p class="producto-precio">$1.500 <span class="unidad">(kilo)</span></p>
-                    <button class="btn-carrito" onclick="agregarAlCarrito('PROD_PLATANO', 'AgroField', 'Plátano Árton', 1500, 'eCommerceAssets/img/platano.jpg', 20)">
-                        <i class="fa-solid fa-cart-plus"></i> Agregar
-                    </button>
-                </div>
-            </div>
-
-            <div class="producto">
-                <div class="producto-img">
-                    <img src="eCommerceAssets/img/cafe.jpg" alt="Café Orgánico">
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Café Orgánico</h3>
-                    <p class="producto-precio">$30.000 <span class="unidad">(Libra)</span></p>
-                    <button class="btn-carrito" onclick="agregarAlCarrito('PROD_CAFE', 'AgroField', 'Café Orgánico', 30000, 'eCommerceAssets/img/cafe.jpg', 15)">
-                        <i class="fa-solid fa-cart-plus"></i> Agregar
-                    </button>
-                </div>
-            </div>
-
-            <div class="producto">
-                <div class="producto-img">
-                    <img src="eCommerceAssets/img/tomate.jpg" alt="Tomate Castilla">
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Tomate Castilla</h3>
-                    <p class="producto-precio">$3.000 <span class="unidad">(Kilo)</span></p>
-                    <button class="btn-carrito" onclick="agregarAlCarrito('PROD_TOMATE', 'AgroField', 'Tomate Castilla', 3000, 'eCommerceAssets/img/tomate.jpg', 10)">
-                        <i class="fa-solid fa-cart-plus"></i> Agregar
-                    </button>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-    
-    <section class="seccion-promos">
-        <div class="promos-grid">
-            <div class="promo">
-                <img src="eCommerceAssets/img/cuadro1.jpg" alt="Promo 1">
-                <button class="btn-comprar">Ver Oferta</button>
-            </div>
-            <div class="promo">
-                <img src="eCommerceAssets/img/cuadro2.jpg" alt="Promo 2">
-                <button class="btn-comprar">Ver Oferta</button>
-            </div>
-            <div class="promo">
-                <img src="eCommerceAssets/img/cuadro1.jpg" alt="Promo 3">
-                <button class="btn-comprar">Ver Oferta</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="banner-final">
-        <div class="banner-left">
-            <h2>Únete a la familia Agro Merger</h2>
-            <p>Apoyando a campesinos independientes con tecnología.</p>
-        </div>
-        <div class="banner-right">
-            <div class="suscripcion">
-                <input type="email" placeholder="Ingresa tu correo">
-                <button class="btn-enviar">Suscribirse</button>
-            </div>
-            <div class="redes">
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-whatsapp"></i>
-            </div>
-        </div>
-    </section>
-
-</div> 
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const slides = document.querySelectorAll(".slide");
-    const btnNext = document.querySelector(".right");
-    const btnPrev = document.querySelector(".left");
-    let current = 0;
-    let interval;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove("active"));
-        if(slides[index]) slides[index].classList.add("active");
-    }
-    function nextSlide() {
-        if(slides.length > 0) {
-            current = (current + 1) % slides.length;
-            showSlide(current);
-        }
-    }
-    function prevSlide() {
-        if(slides.length > 0) {
-            current = (current - 1 + slides.length) % slides.length;
-            showSlide(current);
-        }
-    }
-
-    if(btnNext && btnPrev) {
-        btnNext.addEventListener("click", () => { nextSlide(); resetAutoSlide(); });
-        btnPrev.addEventListener("click", () => { prevSlide(); resetAutoSlide(); });
-    }
-
-    function startAutoSlide() {
-        if(slides.length > 0) interval = setInterval(nextSlide, 4000);
-    }
-    function resetAutoSlide() {
-        clearInterval(interval);
-        startAutoSlide();
-    }
-    startAutoSlide();
-});
-</script>
-    
-<script>
- window.addEventListener('DOMContentLoaded', function() {
-    // 1. Recepción de datos de login
-    const parametrosUrl = new URLSearchParams(window.location.search);
-    if (parametrosUrl.get('login') === 'true') {
-      localStorage.setItem('sesionIniciada', 'true');
-      localStorage.setItem('nombreUsuario', parametrosUrl.get('nombre'));
-      // ¡Esta es la línea clave que faltaba! 👇
-      localStorage.setItem('userEmail', parametrosUrl.get('email')); 
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-
-    const sesionIniciada = localStorage.getItem('sesionIniciada');
-    const nombreUsuario = localStorage.getItem('nombreUsuario');
-    const btnLogin = document.getElementById('btn-login');
-
-    if (sesionIniciada === 'true' && btnLogin) {
-   
-		
-// --- MENÚ DE PERFIL ---
-
-// 1. Inyectamos los estilos CSS para el menú (esto permite usar hover y animaciones)
-const estilosMenu = `
-<style>
-  .user-menu-container {
-    position: relative;
-    display: inline-block;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-  }
-  .user-menu-btn {
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    cursor: pointer;
-    color: #1e293b;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 14px 6px 6px;
-    border-radius: 30px;
-    transition: all 0.2s ease;
-  }
-  .user-menu-btn:hover {
-    background: #f1f5f9;
-    border-color: #94a3b8;
-  }
-  .user-avatar-mini {
-    width: 32px;
-    height: 32px;
-    background-color: #236c2f;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-  .user-name-text {
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-  .user-dropdown {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background-color: #ffffff;
-    min-width: 220px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    overflow: hidden;
-    z-index: 1000;
-    text-align: left;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .user-dropdown.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  .dropdown-item {
-    padding: 12px 20px;
-    text-decoration: none;
-    color: #334155;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: background 0.2s;
-  }
-  .dropdown-item:hover {
-    background-color: #f0fdf4; /* Verde muy claro al pasar el mouse */
-    color: #166534;
-  }
-  .dropdown-divider {
-    height: 1px;
-    background-color: #f1f5f9;
-    margin: 4px 0;
-  }
-  .dropdown-logout {
-    color: #dc2626;
-  }
-  .dropdown-logout:hover {
-    background-color: #fef2f2; /* Rojo muy claro al pasar el mouse */
-    color: #b91c1c;
-  }
-  .dropdown-icon {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-</style>
-`;
-
-// Extraemos la inicial del nombre para el Avatar
-const inicial = nombreUsuario ? nombreUsuario.charAt(0).toUpperCase() : 'U';
-
-// 2. Reemplazamos el botón de login por la nueva estructura
-btnLogin.outerHTML = `
-  ${estilosMenu}
-  <div class="user-menu-container" id="user-menu-wrapper">
-    <button id="btn-user-menu" class="user-menu-btn">
-      <div class="user-avatar-mini">${inicial}</div>
-      <span class="user-name-text">${nombreUsuario}</span>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </button>
-    
-    <div id="dropdown-menu" class="user-dropdown">
-      <div style="padding: 15px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; margin-bottom: 4px;">
-        <p style="margin: 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Cuenta</p>
-      </div>
-
-      <a href="pages/Usuario-Comprador/Usuario_Comprador.html" class="dropdown-item">
-        <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        Mi Perfil
+  <header>
+    <div class="logo">
+      <img src="eCommerceAssets/img/logo.png" alt="Agro-Merge" class="logo__img" />
+      <span class="logo__text">Agro-Merge</span>
+    </div>
+    <div id="headerLinks">
+      <a href="pages/Productos/Productos.html" title="Productos">Productos</a>
+      <a href="../Interfaz/pages/SobreNosotros/SobreNosotros.html" title="Noticias">Noticias</a>
+      <a href="pages/Contactos/Contactos.html">Contacto</a>
+    </div>
+    <input type="search" placeholder="Buscar un producto..." class="search-input">
+    <a href="pages/Login/login.html" title="Login" id="btn-login"><i class="fa-regular fa-user"></i> Iniciar Sesión</a>
+  </header>
+  <section id="offer">
+    <div class="slider-container">
+      <div class="slide active"><img src="eCommerceAssets/img/img1.png" alt="Oferta 1"></div>
+      <div class="slide"><img src="eCommerceAssets/img/img2.png" alt="Oferta 2"></div>
+      <div class="slide"><img src="eCommerceAssets/img/img3.png" alt="Oferta 3"></div>
+      <button class="slider-button left"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="slider-button right"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </section>
+  <section class="imagen-seccion">
+    <img src="eCommerceAssets/img/bannerInformativo.svg" alt="Información Agro" class="imagen-svg">
+  </section>
+  <section class="productos-section">
+    <div class="productos-header">
+      <h2>Explora Nuestras Categorías</h2>
+      <a href="pages/Productos/Productos.html" class="ver-mas">Ver todo <i class="fa-solid fa-angle-right"></i></a>
+    </div>
+    <div class="categorias">
+      <a href="pagina1.html" class="categoria">
+        <img src="eCommerceAssets/img/res.jpg" alt="Carne de Res">
+        <div class="cat-overlay"><h3>Ganadería</h3></div>
       </a>
-      
-      
-      
-      <div class="dropdown-divider"></div>
-      
-      <a href="#" id="btn-logout" class="dropdown-item dropdown-logout">
-        <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-        Cerrar Sesión
+      <a href="pagina2.html" class="categoria">
+        <img src="eCommerceAssets/img/leche.jpg" alt="Lácteos">
+        <div class="cat-overlay"><h3>Lácteos</h3></div>
+      </a>
+      <a href="pagina3.html" class="categoria">
+        <img src="eCommerceAssets/img/cafe.jpg" alt="Café">
+        <div class="cat-overlay"><h3>Café</h3></div>
       </a>
     </div>
-  </div>
-`;
-
-// 3. Lógica para abrir/cerrar el menú
-const btnUserMenu = document.getElementById('btn-user-menu');
-const dropdownMenu = document.getElementById('dropdown-menu');
-const wrapper = document.getElementById('user-menu-wrapper');
-
-// Alternar menú al hacer clic en el botón
-btnUserMenu.addEventListener('click', function(e) {
-  e.stopPropagation(); // Evita que el clic se propague al window
-  dropdownMenu.classList.toggle('show');
-});
-
-// Cerrar el menú si se hace clic afuera
-window.addEventListener('click', function(e) {
-  if (!wrapper.contains(e.target)) {
-    dropdownMenu.classList.remove('show');
+  </section>
+  <section class="nueva-seccion">
+    <div class="nueva-header"><h2>Nuestros Destacados</h2></div>
+    <div class="bloques">
+      <div class="bloque"><img src="eCommerceAssets/img/ImgOff1.jpg" alt="Destacado 1"></div>
+      <div class="bloque"><img src="eCommerceAssets/img/ImgOff2.jpg" alt="Destacado 2"></div>
+      <div class="bloque"><img src="eCommerceAssets/img/ImgOff3.jpg" alt="Destacado 3"></div>
+    </div>
+  </section>
+  <section class="productos-destacados">
+    <div class="productos-header"><h2>Productos del Día</h2></div>
+    <div class="productos-grid">
+      <div class="producto">
+        <div class="producto-img"><img src="eCommerceAssets/img/maiz.jpg" alt="Maíz Híbrido"></div>
+        <div class="producto-info">
+          <h3 class="producto-nombre">Maíz Híbrido (60kg)</h3>
+          <p class="producto-precio">$139.990</p>
+          <button class="btn-carrito" onclick="agregarAlCarrito('PROD_MAIZ', 'AgroField', 'Maíz Híbrido (60kg)', 139990, 'eCommerceAssets/img/maiz.jpg', 30)">
+            <i class="fa-solid fa-cart-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+      <div class="producto">
+        <div class="producto-img"><img src="eCommerceAssets/img/papa.jpg" alt="Papa Parda"></div>
+        <div class="producto-info">
+          <h3 class="producto-nombre">Papa Parda (60kg)</h3>
+          <p class="producto-precio">$100.000</p>
+          <button class="btn-carrito" onclick="agregarAlCarrito('PROD_PAPA', 'AgroField', 'Papa Parda (60kg)', 100000, 'eCommerceAssets/img/papa.jpg', 25)">
+            <i class="fa-solid fa-cart-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+      <div class="producto producto-descuento">
+        <span class="badge">3% OFF</span>
+        <div class="producto-img"><img src="eCommerceAssets/img/platano.jpg" alt="Plátano Artón"></div>
+        <div class="producto-info">
+          <h3 class="producto-nombre">Plátano Artón</h3>
+          <p class="producto-precio">$1.500 <span class="unidad">(kilo)</span></p>
+          <button class="btn-carrito" onclick="agregarAlCarrito('PROD_PLATANO', 'AgroField', 'Plátano Árton', 1500, 'eCommerceAssets/img/platano.jpg', 20)">
+            <i class="fa-solid fa-cart-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+      <div class="producto">
+        <div class="producto-img"><img src="eCommerceAssets/img/cafe.jpg" alt="Café Orgánico"></div>
+        <div class="producto-info">
+          <h3 class="producto-nombre">Café Orgánico</h3>
+          <p class="producto-precio">$30.000 <span class="unidad">(Libra)</span></p>
+          <button class="btn-carrito" onclick="agregarAlCarrito('PROD_CAFE', 'AgroField', 'Café Orgánico', 30000, 'eCommerceAssets/img/cafe.jpg', 15)">
+            <i class="fa-solid fa-cart-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+      <div class="producto">
+        <div class="producto-img"><img src="eCommerceAssets/img/tomate.jpg" alt="Tomate Castilla"></div>
+        <div class="producto-info">
+          <h3 class="producto-nombre">Tomate Castilla</h3>
+          <p class="producto-precio">$3.000 <span class="unidad">(Kilo)</span></p>
+          <button class="btn-carrito" onclick="agregarAlCarrito('PROD_TOMATE', 'AgroField', 'Tomate Castilla', 3000, 'eCommerceAssets/img/tomate.jpg', 10)">
+            <i class="fa-solid fa-cart-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="seccion-promos">
+    <div class="promos-grid">
+      <div class="promo"><img src="eCommerceAssets/img/cuadro1.jpg" alt="Promo 1"><button class="btn-comprar">Ver Oferta</button></div>
+      <div class="promo"><img src="eCommerceAssets/img/cuadro2.jpg" alt="Promo 2"><button class="btn-comprar">Ver Oferta</button></div>
+      <div class="promo"><img src="eCommerceAssets/img/cuadro1.jpg" alt="Promo 3"><button class="btn-comprar">Ver Oferta</button></div>
+    </div>
+  </section>
+  <section class="banner-final">
+    <div class="banner-left">
+      <h2>Únete a la familia Agro Merger</h2>
+      <p>Apoyando a campesinos independientes con tecnología.</p>
+    </div>
+    <div class="banner-right">
+      <div class="suscripcion">
+        <input type="email" placeholder="Ingresa tu correo">
+        <button class="btn-enviar">Suscribirse</button>
+      </div>
+      <div class="redes">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll(".slide");
+  const btnNext = document.querySelector(".right");
+  const btnPrev = document.querySelector(".left");
+  let current = 0;
+  let interval;
+  function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    if (slides[index]) slides[index].classList.add("active");
   }
+  function nextSlide() {
+    if (!slides.length) return;
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+  function prevSlide() {
+    if (!slides.length) return;
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  }
+  function startAutoSlide() {
+    if (slides.length) interval = setInterval(nextSlide, 4000);
+  }
+  function resetAutoSlide() {
+    clearInterval(interval);
+    startAutoSlide();
+  }
+  if (btnNext && btnPrev) {
+    btnNext.addEventListener("click", () => { nextSlide(); resetAutoSlide(); });
+    btnPrev.addEventListener("click", () => { prevSlide(); resetAutoSlide(); });
+  }
+  startAutoSlide();
 });
-
-// 4. Lógica de Cerrar Sesión
-document.getElementById('btn-logout').addEventListener('click', function(e) {
-  e.preventDefault();
-  localStorage.removeItem('sesionIniciada');
-  localStorage.removeItem('nombreUsuario');
-  localStorage.removeItem('carritoAgro'); 
-  window.location.reload(); 
-});
-      // --- ESTRUCTURA DEL CARRITO FLOTANTE ---
-      const carritoHTML = `
-        <button id="btn-flotante-carrito" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: #1e7b36; color: white; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-size: 22px; cursor: pointer; z-index: 9998; display: flex; justify-content: center; align-items: center;">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span id="badge-carrito" style="position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 2px solid white;">0</span>
-        </button>
-
-        <div id="overlay-carrito" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9998; backdrop-filter: blur(2px);"></div>
-
-        <div id="sidebar-carrito" style="position: fixed; top: 0; right: -450px; width: 380px; max-width: 100%; height: 100vh; background-color: white; box-shadow: -4px 0 15px rgba(0,0,0,0.1); z-index: 9999; transition: right 0.4s ease-in-out; display: flex; flex-direction: column; font-family: sans-serif;">
-            
-            <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
-                <h2 style="margin: 0; font-size: 24px; color: #333;">Carrito</h2>
-                <button onclick="cerrarCarrito()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #555;">✕</button>
+</script>
+<script>
+window.addEventListener("DOMContentLoaded", async function () {
+  const btnLogin = document.getElementById("btn-login");
+  if (!btnLogin) return;
+  // Si viene con ?login=true, solo marca sesión; NO guardar nombre null desde URL
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("login") === "true") {
+    localStorage.setItem("sesionIniciada", "true");
+    const emailParam = params.get("email");
+    if (emailParam) {
+      localStorage.setItem("userEmail", emailParam.trim().toLowerCase());
+      localStorage.setItem("usuario_email", emailParam.trim().toLowerCase());
+    }
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+  const sesionIniciada = localStorage.getItem("sesionIniciada") === "true";
+  if (!sesionIniciada) return;
+  let email = (
+    localStorage.getItem("usuario_email") ||
+    localStorage.getItem("userEmail") ||
+    ""
+  ).trim().toLowerCase();
+  if (!email) return;
+  let nombreUsuario = localStorage.getItem("nombreUsuario") || "";
+  let rolUsuario = (localStorage.getItem("userRole") || "comprador").toLowerCase();
+  // Traer nombre y rol reales desde backend
+  try {
+    const resp = await fetch(`/api/usuario?email=${encodeURIComponent(email)}`);
+    if (resp.ok) {
+      const user = await resp.json();
+      if (user?.nombre) nombreUsuario = user.nombre.trim();
+      if (user?.rol) rolUsuario = String(user.rol).toLowerCase();
+      localStorage.setItem("nombreUsuario", nombreUsuario);
+      localStorage.setItem("userRole", rolUsuario);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("usuario_email", email);
+    }
+  } catch (_) {}
+  // Fallback anti-null
+  if (!nombreUsuario || nombreUsuario === "null" || nombreUsuario === "undefined") {
+    const base = email.split("@")[0] || "Usuario";
+    nombreUsuario = base.charAt(0).toUpperCase() + base.slice(1);
+    localStorage.setItem("nombreUsuario", nombreUsuario);
+  }
+  const inicial = nombreUsuario.charAt(0).toUpperCase();
+  const perfilLink = rolUsuario === "comprador"
+    ? "pages/Usuario-Comprador/Usuario_Comprador.html"
+    : "pages/Usuario-Vendedor/Usuario_Vendedor.html"; // ajusta ruta si cambia
+  const vendedorItems = (rolUsuario === "vendedor" || rolUsuario === "empresa")
+    ? `
+      <a href="pages/Agregar-Productos-Final/Agregar-Productos-Final.html" class="dropdown-item">
+        <i class="fa-solid fa-boxes-stacked"></i> Mis productos
+      </a>
+      <a href="pages/Agregar-Productos/Agregar-Productos.html" class="dropdown-item">
+        <i class="fa-solid fa-plus"></i> Publicar producto
+      </a>
+      <div class="dropdown-divider"></div>
+    `
+    : "";
+  const estilosMenu = `
+  <style>
+    .user-menu-container{position:relative;display:inline-block;font-family:'Segoe UI',Roboto,sans-serif}
+    .user-menu-btn{background:#f8fafc;border:1px solid #cbd5e1;cursor:pointer;color:#1e293b;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:30px}
+    .user-avatar-mini{width:32px;height:32px;background:#236c2f;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600}
+    .user-name-text{font-weight:500;font-size:.95rem;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .user-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:#fff;min-width:240px;box-shadow:0 10px 25px rgba(0,0,0,.1);border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;z-index:1000;opacity:0;visibility:hidden;transform:translateY(-10px);transition:.25s}
+    .user-dropdown.show{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-item{padding:12px 16px;text-decoration:none;color:#334155;display:flex;align-items:center;gap:10px;font-size:.95rem}
+    .dropdown-item:hover{background:#f0fdf4;color:#166534}
+    .dropdown-divider{height:1px;background:#f1f5f9;margin:4px 0}
+    .dropdown-logout{color:#dc2626}
+  </style>
+  `;
+  btnLogin.outerHTML = `
+    ${estilosMenu}
+    <div class="user-menu-container" id="user-menu-wrapper">
+      <button id="btn-user-menu" class="user-menu-btn">
+        <div class="user-avatar-mini">${inicial}</div>
+        <span class="user-name-text">${nombreUsuario}</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="dropdown-menu" class="user-dropdown">
+        <div style="padding:12px 16px;background:#f8fafc;border-bottom:1px solid #e2e8f0;">
+          <p style="margin:0;font-size:.78rem;color:#64748b;text-transform:uppercase;font-weight:700;">${rolUsuario}</p>
+        </div>
+        <a href="${perfilLink}" class="dropdown-item"><i class="fa-regular fa-user"></i> Mi perfil</a>
+        ${vendedorItems}
+        <a href="#" id="btn-logout" class="dropdown-item dropdown-logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
+      </div>
+    </div>
+  `;
+  const btnUserMenu = document.getElementById("btn-user-menu");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+  const wrapper = document.getElementById("user-menu-wrapper");
+  btnUserMenu.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle("show");
+  });
+  window.addEventListener("click", function (e) {
+    if (!wrapper.contains(e.target)) dropdownMenu.classList.remove("show");
+  });
+  document.getElementById("btn-logout").addEventListener("click", function (e) {
+    e.preventDefault();
+    localStorage.removeItem("sesionIniciada");
+    localStorage.removeItem("nombreUsuario");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("usuario_email");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("carritoAgro");
+    window.location.reload();
+  });
+  // Carrito solo comprador
+  if (rolUsuario !== "comprador") return;
+  const carritoHTML = `
+    <button id="btn-flotante-carrito" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: #1e7b36; color: white; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-size: 22px; cursor: pointer; z-index: 9998; display: flex; justify-content: center; align-items: center;">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="badge-carrito" style="position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; border: 2px solid white;">0</span>
+    </button>
+    <div id="overlay-carrito" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9998; backdrop-filter: blur(2px);"></div>
+    <div id="sidebar-carrito" style="position: fixed; top: 0; right: -450px; width: 380px; max-width: 100%; height: 100vh; background-color: white; box-shadow: -4px 0 15px rgba(0,0,0,0.1); z-index: 9999; transition: right 0.4s ease-in-out; display: flex; flex-direction: column; font-family: sans-serif;">
+      <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin: 0; font-size: 24px; color: #333;">Carrito</h2>
+        <button onclick="cerrarCarrito()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #555;">✕</button>
+      </div>
+      <div id="lista-productos-carrito" style="flex-grow: 1; overflow-y: auto; padding: 20px;"></div>
+      <div style="padding: 20px; border-top: 1px solid #eee; background: #fff;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #555;">
+          <span>Subtotal</span><span id="subtotal-carrito">$0</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #555;">
+          <span>Envío</span><span id="envio-carrito">$7.900</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 18px; font-weight: bold; color: #333;">
+          <span>Total</span><span id="total-carrito">$0</span>
+        </div>
+        <button onclick="window.location.href='pages/Carrito/carrito.html'" style="width: 100%; padding: 14px; background-color: #1e7b36; color: white; border: none; border-radius: 30px; font-weight: bold; font-size: 15px; cursor: pointer; margin-bottom: 12px;">Finalizar tu compra</button>
+        <button onclick="cerrarCarrito()" style="width: 100%; padding: 14px; background-color: white; color: #1e7b36; border: 1px solid #1e7b36; border-radius: 30px; font-weight: bold; font-size: 15px; cursor: pointer;">Continuar comprando</button>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML("beforeend", carritoHTML);
+  let carrito = JSON.parse(localStorage.getItem("carritoAgro")) || [];
+  const costoEnvio = 7900;
+  window.renderizarCarrito = function () {
+    const contenedor = document.getElementById("lista-productos-carrito");
+    const badge = document.getElementById("badge-carrito");
+    let subtotal = 0;
+    contenedor.innerHTML = "";
+    if (!carrito.length) {
+      contenedor.innerHTML = '<p style="text-align:center; color:#888; margin-top:50px;">Tu carrito está vacío 🌾</p>';
+    }
+    carrito.forEach((prod, index) => {
+      subtotal += prod.precio * prod.cantidad;
+      contenedor.innerHTML += `
+        <div style="display: flex; gap: 15px; margin-bottom: 25px; align-items: center;">
+          <img src="${prod.imagen}" style="width: 65px; height: 65px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;">
+          <div style="flex-grow: 1;">
+            <div style="display: flex; justify-content: space-between;">
+              <p style="margin: 0; font-size: 10px; color: #888; text-transform: uppercase;">${prod.marca}</p>
+              <button onclick="eliminarItem(${index})" style="background: none; border: none; color: #a1a1aa; cursor: pointer;"><i class="fa-regular fa-trash-can"></i></button>
             </div>
-
-            <div id="lista-productos-carrito" style="flex-grow: 1; overflow-y: auto; padding: 20px;"></div>
-
-            <div style="padding: 20px; border-top: 1px solid #eee; background: #fff;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #555;">
-                    <span>Subtotal</span><span id="subtotal-carrito">$0</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #555;">
-                    <span>Envío</span><span id="envio-carrito">$7.900</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 18px; font-weight: bold; color: #333;">
-                    <span>Total</span><span id="total-carrito">$0</span>
-               </div>
-               
-               <button onclick="window.location.href='pages/Carrito/carrito.html'" style="width: 100%; padding: 14px; background-color: #1e7b36; color: white; border: none; border-radius: 30px; font-weight: bold; font-size: 15px; cursor: pointer; margin-bottom: 12px;">Finalizar tu compra</button>
-               <button onclick="cerrarCarrito()" style="width: 100%; padding: 14px; background-color: white; color: #1e7b36; border: 1px solid #1e7b36; border-radius: 30px; font-weight: bold; font-size: 15px; cursor: pointer;">Continuar comprando</button>
+            <p style="margin: 4px 0; font-size: 14px; color: #333; font-weight: 500;">${prod.nombre}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+              <input type="number" value="${prod.cantidad}" min="1" max="${prod.stock}" onchange="cambiarCantidad(${index}, this.value)" style="width: 50px; padding: 4px; border-radius: 8px; border: 1px solid #ccc; text-align: center;">
+              <span style="color: #1e7b36; font-weight: bold; font-size: 15px;">$${(prod.precio * prod.cantidad).toLocaleString("es-CO")}</span>
             </div>
+          </div>
         </div>
       `;
-      document.body.insertAdjacentHTML('beforeend', carritoHTML);
-
-      // ---LÓGICA FUNCIONAL DEL CARRITO ---
-      let carrito = JSON.parse(localStorage.getItem('carritoAgro')) || [];
-      const costoEnvio = 7900;
-
-      window.renderizarCarrito = function() {
-        const contenedor = document.getElementById('lista-productos-carrito');
-        const badge = document.getElementById('badge-carrito');
-        let subtotal = 0;
-        contenedor.innerHTML = '';
-
-        if(carrito.length === 0) {
-            contenedor.innerHTML = '<p style="text-align:center; color:#888; margin-top:50px;">Tu carrito está vacío 🌾</p>';
-        }
-
-        carrito.forEach((prod, index) => {
-            subtotal += prod.precio * prod.cantidad;
-            contenedor.innerHTML += `
-                <div style="display: flex; gap: 15px; margin-bottom: 25px; align-items: center;">
-                    <img src="${prod.imagen}" style="width: 65px; height: 65px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;">
-                    <div style="flex-grow: 1;">
-                        <div style="display: flex; justify-content: space-between;">
-                            <p style="margin: 0; font-size: 10px; color: #888; text-transform: uppercase;">${prod.marca}</p>
-                            <button onclick="eliminarItem(${index})" style="background: none; border: none; color: #a1a1aa; cursor: pointer;"><i class="fa-regular fa-trash-can"></i></button>
-                        </div>
-                        <p style="margin: 4px 0; font-size: 14px; color: #333; font-weight: 500;">${prod.nombre}</p>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                            <input type="number" value="${prod.cantidad}" min="1" max="${prod.stock}" onchange="cambiarCantidad(${index}, this.value)" style="width: 50px; padding: 4px; border-radius: 8px; border: 1px solid #ccc; text-align: center;">
-                            <span style="color: #1e7b36; font-weight: bold; font-size: 15px;">$${(prod.precio * prod.cantidad).toLocaleString('es-CO')}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-
-        badge.innerText = carrito.length;
-        document.getElementById('subtotal-carrito').innerText = '$' + subtotal.toLocaleString('es-CO');
-        document.getElementById('total-carrito').innerText = '$' + (carrito.length > 0 ? (subtotal + costoEnvio) : 0).toLocaleString('es-CO');
-        localStorage.setItem('carritoAgro', JSON.stringify(carrito));
-      }
-
-      window.abrirCarrito = () => {
-          document.getElementById('sidebar-carrito').style.right = '0';
-          document.getElementById('overlay-carrito').style.display = 'block';
-          document.body.style.overflow = 'hidden';
-      };
-
-      window.cerrarCarrito = () => {
-          document.getElementById('sidebar-carrito').style.right = '-450px';
-          document.getElementById('overlay-carrito').style.display = 'none';
-          document.body.style.overflow = 'auto';
-      };
-
-      window.eliminarItem = (index) => {
-          carrito.splice(index, 1);
-          renderizarCarrito();
-      };
-
-      window.cambiarCantidad = (index, nuevaCantidad) => {
-          let cantidad = parseInt(nuevaCantidad);
-          if (cantidad > carrito[index].stock) {
-              alert('¡Uy! Solo hay ' + carrito[index].stock + ' unidades en existencia.');
-              cantidad = carrito[index].stock;
-          }
-          if (cantidad < 1) cantidad = 1;
-          carrito[index].cantidad = cantidad;
-          renderizarCarrito();
-      };
-
-      window.agregarAlCarrito = (id, marca, nombre, precio, imagen, stockMaximo) => {
-          carrito = JSON.parse(localStorage.getItem('carritoAgro')) || [];
-          
-          let itemExistente = carrito.find(item => item.id === id);
-          
-          if (itemExistente) {
-              if (itemExistente.cantidad < stockMaximo) {
-                  itemExistente.cantidad++;
-              } else {
-                  alert('Has alcanzado el límite de stock para este producto.');
-                  return;
-              }
-          } else {
-              carrito.push({ id, marca, nombre, precio, imagen, stock: stockMaximo, cantidad: 1 });
-          }
-          
-          renderizarCarrito();
-          abrirCarrito();
-      };
-
-      document.getElementById('btn-flotante-carrito').addEventListener('click', abrirCarrito);
-      document.getElementById('overlay-carrito').addEventListener('click', cerrarCarrito);
-
-      renderizarCarrito();
+    });
+    badge.innerText = carrito.length;
+    document.getElementById("subtotal-carrito").innerText = "$" + subtotal.toLocaleString("es-CO");
+    document.getElementById("total-carrito").innerText = "$" + (carrito.length ? subtotal + costoEnvio : 0).toLocaleString("es-CO");
+    localStorage.setItem("carritoAgro", JSON.stringify(carrito));
+  };
+  window.abrirCarrito = () => {
+    document.getElementById("sidebar-carrito").style.right = "0";
+    document.getElementById("overlay-carrito").style.display = "block";
+    document.body.style.overflow = "hidden";
+  };
+  window.cerrarCarrito = () => {
+    document.getElementById("sidebar-carrito").style.right = "-450px";
+    document.getElementById("overlay-carrito").style.display = "none";
+    document.body.style.overflow = "auto";
+  };
+  window.eliminarItem = (index) => {
+    carrito.splice(index, 1);
+    renderizarCarrito();
+  };
+  window.cambiarCantidad = (index, nuevaCantidad) => {
+    let cantidad = parseInt(nuevaCantidad, 10);
+    if (cantidad > carrito[index].stock) {
+      alert("¡Uy! Solo hay " + carrito[index].stock + " unidades en existencia.");
+      cantidad = carrito[index].stock;
     }
-  });
+    if (cantidad < 1) cantidad = 1;
+    carrito[index].cantidad = cantidad;
+    renderizarCarrito();
+  };
+  window.agregarAlCarrito = (id, marca, nombre, precio, imagen, stockMaximo) => {
+    carrito = JSON.parse(localStorage.getItem("carritoAgro")) || [];
+    const existente = carrito.find(item => item.id === id);
+    if (existente) {
+      if (existente.cantidad < stockMaximo) existente.cantidad++;
+      else return alert("Has alcanzado el límite de stock para este producto.");
+    } else {
+      carrito.push({ id, marca, nombre, precio, imagen, stock: stockMaximo, cantidad: 1 });
+    }
+    renderizarCarrito();
+    abrirCarrito();
+  };
+  document.getElementById("btn-flotante-carrito").addEventListener("click", abrirCarrito);
+  document.getElementById("overlay-carrito").addEventListener("click", cerrarCarrito);
+  renderizarCarrito();
+});
 </script>
-
 </body>
 </html>

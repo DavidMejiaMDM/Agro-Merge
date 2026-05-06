@@ -1,50 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tus Productos - Agro-Merge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/Interfaz/eCommerceAssets/styles/Agregar-Productos-Final.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tus Productos - Agro-Merge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-700: #1b5e20;
+      --green-500: #388e3c;
+      --green-400: #7cb342;
+      --text-900: #111827;
+      --text-600: #6b7280;
+      --text-500: #9ca3af;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f8faf8;
+      color: var(--text-900);
+      min-height: 100vh;
+    }
+    .page-wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 28px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .main-card {
+      background: #fff;
+      border: 1px solid #edf0ed;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+    .header-section { text-align: center; margin-bottom: 20px; }
+    .header-section h1 {
+      font-family: "Poppins", sans-serif;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+    .header-section p { color: var(--text-600); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .product-image {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--border);
+      background: #f3f4f6;
+    }
+    .product-body { padding: 12px; }
+    .product-name { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .price { color: var(--green-700); font-weight: 700; }
+    .pill {
+      border: 1px solid #d9ebda;
+      background: #eef7ee;
+      color: #2f6b33;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .empty-state {
+      border: 1px dashed #d1d5db;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: var(--text-600);
+      grid-column: 1 / -1;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-add {
+      border: 1px solid #d6ddff;
+      background: #eef1ff;
+    }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(90deg, var(--green-500), var(--green-400));
+    }
+    .page-footer {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--text-500);
+      font-size: 12px;
+    }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="page-wrapper">
-        
-        <div class="main-content">
-            <div class="header-section">
-                <div class="brand-logo">
-                    <div class="logo-placeholder">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <span class="brand-text">Agro-Merge</span>
-                </div>
-                <h1>Completa tu perfil</h1>
-                <p>Agrega tus productos y precios</p>
-            </div>
-
-            <div class="products-grid" id="contenedor-productos">
-                </div>
-
-            <div class="actions-container">
-                <button type="button" class="btn-add" id="btn_anadir_mas">Añadir</button>
-                <button type="button" class="btn-primary" id="btn_continuar">Continuar</button>
-                <p class="bottom-text">Agrega tus productos y precios</p>
-            </div>
-        </div>
-
-        <footer class="page-footer">
-            <span>Todos los derechos reservados © Agromerge</span>
-            <a href="#">Política de Privacidad</a>
-        </footer>
-
-        <div class="floating-support">
-            <span>S</span>
-        </div>
-
+  <div class="page-wrapper">
+    <div class="main-card">
+      <div class="header-section">
+        <h1>Completa tu perfil</h1>
+        <p>Estos son los productos que registraste</p>
+      </div>
+      <div class="products-grid" id="contenedor-productos"></div>
+      <div class="actions">
+        <button class="btn btn-add" id="btn_anadir_mas" type="button">Añadir más productos</button>
+        <button class="btn btn-primary" id="btn_continuar" type="button">Continuar</button>
+      </div>
     </div>
-
-    <script src="/Interfaz/pages/js/Agregar-Productos-Final.js"></script>
+    <footer class="page-footer">Todos los derechos reservados © Agromerge</footer>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const contenedor = document.getElementById('contenedor-productos');
+      const btnAnadirMas = document.getElementById('btn_anadir_mas');
+      const btnContinuar = document.getElementById('btn_continuar');
+      function obtenerEmailProceso() {
+        const params = new URLSearchParams(window.location.search);
+        const emailQuery = params.get('email')?.trim().toLowerCase();
+        if (emailQuery) {
+          localStorage.setItem('emailRegistroVendedor', emailQuery);
+          return emailQuery;
+        }
+        return (
+          localStorage.getItem('emailRegistroVendedor') ||
+          localStorage.getItem('usuario_email') ||
+          localStorage.getItem('userEmail') ||
+          ''
+        ).trim().toLowerCase();
+      }
+      const email = obtenerEmailProceso();
+      if (!email) {
+        contenedor.innerHTML = `<div class="empty-state">No se encontró el correo del proceso de registro.</div>`;
+        return;
+      }
+      const formatoPrecio = (v) => new Intl.NumberFormat('es-CO').format(Number(v) || 0);
+      function render(productos) {
+        if (!productos || !productos.length) {
+          contenedor.innerHTML = `<div class="empty-state">Aún no has agregado productos.</div>`;
+          return;
+        }
+        contenedor.innerHTML = productos.map((p) => `
+          <article class="product-card">
+            <img class="product-image" src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
+            <div class="product-body">
+              <h3 class="product-name">${p.nombre}</h3>
+              <div class="meta-row">
+                <span class="price">$ ${formatoPrecio(p.precio)}</span>
+                <span class="pill">${p.tipo_venta || 'N/A'}</span>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      }
+      async function cargarProductos() {
+        try {
+          const apiUrl = `http://localhost:3000/api/productos?email=${encodeURIComponent(email)}`;
+          const resp = await fetch(apiUrl);
+          if (!resp.ok) {
+            const texto = await resp.text();
+            console.error('Error API productos:', resp.status, texto);
+            contenedor.innerHTML = `<div class="empty-state">Error ${resp.status}: no se pudo cargar la API de productos.</div>`;
+            return;
+          }
+          const data = await resp.json();
+          if (!data.ok) {
+            contenedor.innerHTML = `<div class="empty-state">${data?.mensaje || 'No se pudieron cargar productos.'}</div>`;
+            return;
+          }
+          render(data.productos || []);
+        } catch (e) {
+          console.error('Error de conexión:', e);
+          contenedor.innerHTML = `<div class="empty-state">Error de conexión al cargar productos.</div>`;
+        }
+      }
+      btnAnadirMas.addEventListener('click', () => {
+        window.location.assign('http://localhost:3000/pages/Agregar-Productos/Agregar-Productos.html');
+      });
+      btnContinuar.addEventListener('click', () => {
+        window.location.assign('../../Index.html');
+      });
+      await cargarProductos();
+    });
+  </script>
 </body>
 </html>

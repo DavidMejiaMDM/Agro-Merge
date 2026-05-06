@@ -381,7 +381,7 @@ ALTER TABLE usuarios ADD codigo_verificacion VARCHAR(4) NULL;
 USE agro_merge_db;
 
 DELETE FROM usuarios WHERE email = 'mdm3oficial@gmail.com';
-
+DELETE FROM usuarios WHERE email = 'marcosdavidmejiaescobar@gmail.com';
 ALTER TABLE usuarios ADD COLUMN direccion VARCHAR(255);
 
 SELECT * FROM usuarios;
