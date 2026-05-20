@@ -26,13 +26,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Servir frontend
-app.use(express.static(path.join(__dirname, '../Interfaz')));
-
-// Evita warning de Chrome DevTools
+// Evita warning de Chrome DevTools (antes del static)
 app.get('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
     res.status(204).end();
 });
+
+// Servir frontend
+app.use(express.static(path.join(__dirname, '../Interfaz')));
 
 // ==============================
 // Multer / Uploads
