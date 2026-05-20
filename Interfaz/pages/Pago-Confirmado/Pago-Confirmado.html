@@ -1,273 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pago Confirmado - Agro-Merge</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      color: #111;
-      background: #f7faf7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .main-header {
-      background: #fff;
-      border-bottom: 1px solid #e8ece8;
-      padding: 16px 0;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .logo-placeholder {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #fdf6e3;
-      border: 1px solid #eadfce;
-      color: #c7935f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand-text {
-      font-family: "Poppins", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      font-family: "Poppins", sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: #111;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: #1e6c31;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 40px 0 60px;
-    }
-
-    .page-title {
-      margin-bottom: 24px;
-    }
-
-    .page-title h1 {
-      font-family: "Poppins", sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-    }
-
-    .item-count {
-      font-family: "Poppins", sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: #5f6675;
-    }
-
-    .confirmation-card {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 48px 32px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    .success-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 24px auto;
-      border-radius: 50%;
-      border: 3px solid #1e6c31;
-      background: #f3fbf4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .success-icon i {
-      font-size: 36px;
-      color: #1e6c31;
-      line-height: 1;
-    }
-
-    .confirmation-card h2 {
-      font-family: "Poppins", sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .confirmation-text {
-      display: block;
-      font-size: 15px;
-      color: #5f6675;
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    #detalle-factura {
-      display: block;
-      font-size: 13px;
-      color: #6b7280;
-      background: #f8fbf8;
-      border: 1px dashed #c8e6c9;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin: 16px auto 28px auto;
-      max-width: 500px;
-      line-height: 1.5;
-    }
-
-    .action-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .btn {
-      width: 100%;
-      max-width: 400px;
-      padding: 14px 24px;
-      border-radius: 30px;
-      font-family: "Poppins", sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: #1e6c31;
-      color: #fff;
-      border: none;
-    }
-
-    .btn-primary:hover {
-      background: #165a28;
-    }
-
-    .btn-outline {
-      background: #fff;
-      color: #1e6c31;
-      border: 2px solid #1e6c31;
-    }
-
-    .btn-outline:hover {
-      background: #f4fdf4;
-    }
-
-    .main-footer {
-      background: #f3f6f3;
-      border-top: 1px solid #e8ece8;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 13px;
-      color: #8b93a1;
-    }
-
-    @media (max-width: 600px) {
-      .confirmation-card {
-        padding: 32px 20px;
-      }
-
-      .page-title h1 {
-        font-size: 24px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Confirmado - Agro-Merge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/eCommerceAssets/styles/Pago-Confirmado.css">
 </head>
 <body>
 
-  <header class="main-header">
-    <div class="container header-container">
-      <a href="../../Index.html" class="brand-logo">
-        <div class="logo-placeholder"><i class="fas fa-seedling"></i></div>
-        <span class="brand-text">Agro-Merge</span>
-      </a>
-      <nav class="nav-links">
-        <a href="../../Index.html">Inicio</a>
-        <a href="../Productos/Productos.html">Productos</a>
-      </nav>
-    </div>
-  </header>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="brand-logo">
+                <div class="logo-placeholder">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <span class="brand-text">Agro-Merge</span>
+            </div>
 
-  <main class="container main-content">
-    <div class="page-title">
-      <h1>Pedido confirmado <span class="item-count" id="pedido-resumen">(0 productos)</span></h1>
-    </div>
+            <nav class="nav-links">
+                <a href="#">Precios</a>
+                <a href="#">Productos</a>
+                <a href="#">Noticias</a>
+                <a href="#" class="active">Contacto</a>
+            </nav>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Busca un producto">
+                <i class="fas fa-search"></i>
+            </div>
 
-    <div class="confirmation-card">
-      <div class="success-icon"><i class="fas fa-check"></i></div>
-      <h2>Pago confirmado</h2>
-      <p class="confirmation-text" id="mensaje-confirmacion">Tu orden ha sido procesada correctamente.</p>
-      <p id="detalle-factura"></p>
+            <div class="login-btn">
+                <i class="far fa-user"></i>
+                <span>Inicia Sesión</span>
+            </div>
+        </div>
+    </header>
 
-      <div class="action-buttons">
-        <button type="button" class="btn btn-primary" id="btn-descargar-comprobante">Descargar comprobante</button>
-        <button type="button" class="btn btn-outline" id="btn-ir-inicio">Ir al inicio</button>
-      </div>
-    </div>
-  </main>
+    <main class="container main-content">
+        
+        <div class="page-title">
+            <h1>Mi carrito</h1>
+            <span class="item-count">(3 productos)</span>
+        </div>
 
-  <footer class="main-footer">
-    <div class="container">
-      <p>Todos los derechos reservados © Agromerge</p>
-    </div>
-  </footer>
+        <div class="confirmation-card">
+            
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h2>Pago confirmado</h2>
+            
+            <p class="confirmation-text">
+                Tu orden ha sido procesada correctamente. Hemos enviado el comprobante y los detalles de tu compra al correo registrado.
+            </p>
+            
+            <div class="action-buttons">
+                <button type="button" class="btn btn-primary">Descargar comprobante</button>
+                <button type="button" class="btn btn-outline">Ir al inicio</button>
+            </div>
 
-  <script src="../js/pagoConfirmado.js"></script>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-container">
+            
+            <div class="footer-info">
+                <h3>Suscríbase a nuestro boletín informativo</h3>
+                <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu magna.</p>
+            </div>
+            
+            <div class="newsletter-box">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button type="button" class="btn-subscribe">Subscribe</button>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+
+        </div>
+    </footer>
+
 </body>
 </html>
