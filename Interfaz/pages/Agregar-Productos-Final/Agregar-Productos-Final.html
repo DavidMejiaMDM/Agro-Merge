@@ -145,34 +145,46 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
+      const API_BASE = 'http://localhost:3000';
       const contenedor = document.getElementById('contenedor-productos');
       const btnAnadirMas = document.getElementById('btn_anadir_mas');
       const btnContinuar = document.getElementById('btn_continuar');
+
       function obtenerEmailProceso() {
         const params = new URLSearchParams(window.location.search);
         const emailQuery = params.get('email')?.trim().toLowerCase();
+
         if (emailQuery) {
           localStorage.setItem('emailRegistroVendedor', emailQuery);
+          localStorage.setItem('usuario_email', emailQuery);
+          localStorage.setItem('userEmail', emailQuery);
+          try { sessionStorage.setItem('emailRegistroVendedor', emailQuery); } catch (_) {}
           return emailQuery;
         }
+
         return (
           localStorage.getItem('emailRegistroVendedor') ||
           localStorage.getItem('usuario_email') ||
           localStorage.getItem('userEmail') ||
+          sessionStorage.getItem('emailRegistroVendedor') ||
           ''
         ).trim().toLowerCase();
       }
+
       const email = obtenerEmailProceso();
       if (!email) {
         contenedor.innerHTML = `<div class="empty-state">No se encontró el correo del proceso de registro.</div>`;
         return;
       }
+
       const formatoPrecio = (v) => new Intl.NumberFormat('es-CO').format(Number(v) || 0);
+
       function render(productos) {
         if (!productos || !productos.length) {
           contenedor.innerHTML = `<div class="empty-state">Aún no has agregado productos.</div>`;
           return;
         }
+
         contenedor.innerHTML = productos.map((p) => `
           <article class="product-card">
             <img class="product-image" src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
@@ -186,9 +198,10 @@
           </article>
         `).join('');
       }
+
       async function cargarProductos() {
         try {
-          const apiUrl = `http://localhost:3000/api/productos?email=${encodeURIComponent(email)}`;
+          const apiUrl = `${API_BASE}/api/productos?email=${encodeURIComponent(email)}`;
           const resp = await fetch(apiUrl);
           if (!resp.ok) {
             const texto = await resp.text();
@@ -196,23 +209,28 @@
             contenedor.innerHTML = `<div class="empty-state">Error ${resp.status}: no se pudo cargar la API de productos.</div>`;
             return;
           }
+
           const data = await resp.json();
           if (!data.ok) {
             contenedor.innerHTML = `<div class="empty-state">${data?.mensaje || 'No se pudieron cargar productos.'}</div>`;
             return;
           }
+
           render(data.productos || []);
         } catch (e) {
           console.error('Error de conexión:', e);
           contenedor.innerHTML = `<div class="empty-state">Error de conexión al cargar productos.</div>`;
         }
       }
+
       btnAnadirMas.addEventListener('click', () => {
-        window.location.assign('http://localhost:3000/pages/Agregar-Productos/Agregar-Productos.html');
+        window.location.assign(`${API_BASE}/pages/Agregar-Productos/Agregar-Productos.html?email=${encodeURIComponent(email)}`);
       });
+
       btnContinuar.addEventListener('click', () => {
-        window.location.assign('../../Index.html');
+        window.location.assign(`${API_BASE}/Index.html`);
       });
+
       await cargarProductos();
     });
   </script>

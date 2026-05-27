@@ -69,6 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("userEmail", email);
       localStorage.setItem("usuario_email", email);
       localStorage.setItem("usuario_rol", rol);
+      localStorage.setItem("userRole", rol);
+
+      if (rol !== "vendedor" && rol !== "empresa") {
+        localStorage.removeItem("emailRegistroVendedor");
+        try {
+          sessionStorage.removeItem("emailRegistroVendedor");
+        } catch (_) {}
+      }
 
       window.location.href = `${API_BASE}/Index.html?login=true`;
     } catch (error) {

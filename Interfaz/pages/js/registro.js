@@ -18,7 +18,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (rol === "vendedor" || rol === "empresa") {
       localStorage.setItem("emailRegistroVendedor", correoNormalizado);
+      try {
+        sessionStorage.setItem("emailRegistroVendedor", correoNormalizado);
+      } catch (_) {}
+    } else {
+      localStorage.removeItem("emailRegistroVendedor");
+      try {
+        sessionStorage.removeItem("emailRegistroVendedor");
+      } catch (_) {}
     }
+  };
+
+  const obtenerRolActivoDesdeTabs = () => {
+    if (document.getElementById("tab-comprador")?.checked) return "comprador";
+    if (document.getElementById("tab-vendedor")?.checked) return "vendedor";
+    if (document.getElementById("tab-empresa")?.checked) return "empresa";
+    return "";
   };
 
   const validarFormulario = (form) => {
@@ -54,10 +69,13 @@ document.addEventListener("DOMContentLoaded", () => {
         botonSubmit.textContent = "Registrando...";
       }
 
+      const rolFormulario = (inputRol?.value || "").trim().toLowerCase();
+      const rolPorTab = obtenerRolActivoDesdeTabs();
+      const rolAEnviar =
+        ["comprador", "vendedor", "empresa"].includes(rolFormulario) ? rolFormulario : rolPorTab;
+
       const datosFormulario = new URLSearchParams(new FormData(form));
-      if (!datosFormulario.get("rol_usuario") && inputRol) {
-        datosFormulario.append("rol_usuario", inputRol.value.trim());
-      }
+      datosFormulario.set("rol_usuario", rolAEnviar || "comprador");
 
       const respuesta = await fetch(form.action, {
         method: form.method.toUpperCase(),
@@ -73,12 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const rolFinal = (payload?.rol_usuario || inputRol.value || "").trim().toLowerCase();
+      const rolFinal = (payload?.rol_usuario || rolAEnviar || "comprador").trim().toLowerCase();
 
       almacenarCorreos(inputCorreo.value, rolFinal);
       localStorage.setItem("userRole", rolFinal);
+      localStorage.setItem("usuario_rol", rolFinal);
 
-      window.location.href = "../Confirmar-codigo/confirmar-codigo.html";
+      window.location.href =
+        `../Confirmar-codigo/confirmar-codigo.html?email=${encodeURIComponent(
+          inputCorreo.value.trim().toLowerCase()
+        )}&rol=${encodeURIComponent(rolFinal)}`;
     } catch (error) {
       console.error("Error conectando con backend:", error);
       alert("No se pudo conectar con el servidor.");

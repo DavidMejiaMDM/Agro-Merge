@@ -6,6 +6,10 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const multer = require('multer');
 
+function normalizarEmail(email) {
+    return (email || '').trim().toLowerCase();
+}
+
 // ==============================
 // Configuración correo (Gmail)
 // ==============================
@@ -225,7 +229,7 @@ app.post('/registro', (req, res) => {
 // 2) LOGIN
 // ==============================
 app.post('/login', (req, res) => {
-    const email = req.body.correo_usuario?.trim().toLowerCase();
+    const email = normalizarEmail(req.body.correo_usuario);
     const contrasena = req.body.clave_usuario;
 
     const sql = `
@@ -250,7 +254,8 @@ app.post('/login', (req, res) => {
             return res.status(403).json({
                 ok: false,
                 mensaje: 'Debes verificar tu código de 4 dígitos.',
-                requiere_verificacion: true
+                requiere_verificacion: true,
+                correo_usuario: usuario.email
             });
         }
 
@@ -271,7 +276,16 @@ app.post('/login', (req, res) => {
 // ==============================
 app.post('/verificar-codigo', (req, res) => {
     const { d1, d2, d3, d4, correo_usuario } = req.body;
-    const codigoIngresado = `${d1}${d2}${d3}${d4}`;
+    const codigoIngresado = `${d1 || ''}${d2 || ''}${d3 || ''}${d4 || ''}`.trim();
+    const emailNormalizado = normalizarEmail(correo_usuario);
+
+    if (!emailNormalizado || codigoIngresado.length !== 4) {
+        return res.status(400).send(`
+            <h1>Datos incompletos</h1>
+            <p>Debes ingresar correo y código de 4 dígitos.</p>
+            <a href="javascript:history.back()">Intentar de nuevo</a>
+        `);
+    }
 
     const sql = `
         SELECT email, codigo_verificacion, rol
@@ -279,7 +293,7 @@ app.post('/verificar-codigo', (req, res) => {
         WHERE email = ? AND codigo_verificacion = ?
     `;
 
-    conexion.query(sql, [correo_usuario, codigoIngresado], (error, resultados) => {
+    conexion.query(sql, [emailNormalizado, codigoIngresado], (error, resultados) => {
         if (error) {
             console.error('Error en verificación:', error);
             return res.status(500).send('Error en base de datos.');
@@ -288,25 +302,33 @@ app.post('/verificar-codigo', (req, res) => {
         if (!resultados.length) {
             return res.status(400).send(`
                 <h1>Código incorrecto</h1>
-                <p>El código no coincide para ${correo_usuario}.</p>
-                <a href="javascript:history.back()">Intentar de nuevo</a>
+                <p>El código no coincide para ${emailNormalizado}.</p>
+                <a href="/pages/Confirmar-codigo/confirmar-codigo.html?email=${encodeURIComponent(emailNormalizado)}">Intentar de nuevo</a>
             `);
         }
 
         const usuario = resultados[0];
+        const emailActivo = normalizarEmail(usuario.email);
         const updateSql = 'UPDATE usuarios SET estado = "activo" WHERE email = ?';
 
-        conexion.query(updateSql, [correo_usuario], (err) => {
+        conexion.query(updateSql, [emailActivo], (err) => {
             if (err) return res.status(500).send('No se pudo activar la cuenta.');
 
+            const emailParam = encodeURIComponent(emailActivo);
+
+            res.setHeader(
+                'Set-Cookie',
+                `agro_email=${emailParam}; Path=/; Max-Age=86400; SameSite=Lax`
+            );
+
             if (usuario.rol === 'vendedor' || usuario.rol === 'empresa') {
-                return res.sendFile(
-                    path.join(__dirname, '../Interfaz/pages/Correo-verificado-vendedor/correo.verificado-vendedor.html')
+                return res.redirect(
+                    `/pages/Correo-verificado-vendedor/correo.verificado-vendedor.html?email=${emailParam}`
                 );
             }
 
-            return res.sendFile(
-                path.join(__dirname, '../Interfaz/pages/Correo-verificado/correo.verificado.html')
+            return res.redirect(
+                `/pages/Correo-verificado/correo.verificado.html?email=${emailParam}`
             );
         });
     });

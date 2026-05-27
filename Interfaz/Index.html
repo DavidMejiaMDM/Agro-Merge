@@ -202,7 +202,11 @@ window.addEventListener("DOMContentLoaded", async function () {
   ).trim().toLowerCase();
   if (!email) return;
   let nombreUsuario = localStorage.getItem("nombreUsuario") || "";
-  let rolUsuario = (localStorage.getItem("userRole") || "comprador").toLowerCase();
+  let rolUsuario = (
+    localStorage.getItem("usuario_rol") ||
+    localStorage.getItem("userRole") ||
+    "comprador"
+  ).toLowerCase();
   // Traer nombre y rol reales desde backend
   try {
     const resp = await fetch(`/api/usuario?email=${encodeURIComponent(email)}`);
@@ -212,6 +216,7 @@ window.addEventListener("DOMContentLoaded", async function () {
       if (user?.rol) rolUsuario = String(user.rol).toLowerCase();
       localStorage.setItem("nombreUsuario", nombreUsuario);
       localStorage.setItem("userRole", rolUsuario);
+      localStorage.setItem("usuario_rol", rolUsuario);
       localStorage.setItem("userEmail", email);
       localStorage.setItem("usuario_email", email);
     }
@@ -225,7 +230,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   const inicial = nombreUsuario.charAt(0).toUpperCase();
   const perfilLink = rolUsuario === "comprador"
     ? "pages/Usuario-Comprador/Usuario_Comprador.html"
-    : "pages/Usuario-Vendedor/Usuario_Vendedor.html"; // ajusta ruta si cambia
+    : "pages/Usuario-Comprador/Usuario_Comprador.html"; // ajusta ruta si cambia
   const vendedorItems = (rolUsuario === "vendedor" || rolUsuario === "empresa")
     ? `
       <a href="pages/Agregar-Productos-Final/Agregar-Productos-Final.html" class="dropdown-item">
@@ -286,6 +291,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     localStorage.removeItem("userEmail");
     localStorage.removeItem("usuario_email");
     localStorage.removeItem("userRole");
+    localStorage.removeItem("usuario_rol");
     localStorage.removeItem("carritoAgro");
     window.location.reload();
   });

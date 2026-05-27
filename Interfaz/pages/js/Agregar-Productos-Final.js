@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    const API_BASE = 'http://localhost:3000';
     const contenedor = document.getElementById('contenedor-productos');
     const btnAnadirMas = document.getElementById('btn_anadir_mas');
     const btnContinuar = document.getElementById('btn_continuar');
@@ -9,6 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (emailQuery) {
             localStorage.setItem('emailRegistroVendedor', emailQuery);
+            localStorage.setItem('usuario_email', emailQuery);
+            localStorage.setItem('userEmail', emailQuery);
+            try { sessionStorage.setItem('emailRegistroVendedor', emailQuery); } catch (_) {}
             return emailQuery;
         }
 
@@ -16,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.getItem('emailRegistroVendedor') ||
             localStorage.getItem('usuario_email') ||
             localStorage.getItem('userEmail') ||
+            sessionStorage.getItem('emailRegistroVendedor') ||
             ''
         ).trim().toLowerCase();
     }
@@ -61,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function cargarProductos() {
         try {
-            const response = await fetch(`/api/productos?email=${encodeURIComponent(emailProceso)}`);
+            const response = await fetch(`${API_BASE}/api/productos?email=${encodeURIComponent(emailProceso)}`);
             const data = await response.json();
 
             if (!response.ok || !data.ok) {
@@ -77,7 +82,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     btnAnadirMas?.addEventListener('click', () => {
-        window.location.href = '/pages/Agregar-Productos.html';
+        window.location.href =
+            `${API_BASE}/pages/Agregar-Productos/Agregar-Productos.html?email=${encodeURIComponent(emailProceso)}`;
     });
 
     btnContinuar?.addEventListener('click', () => {

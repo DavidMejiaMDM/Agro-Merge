@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE = 'http://localhost:3000';
     const form = document.getElementById('formulario_producto');
     const inputNombre = document.getElementById('nombre_producto');
     const inputPrecio = document.getElementById('precio');
@@ -16,13 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (emailQuery) {
             localStorage.setItem('emailRegistroVendedor', emailQuery);
+            localStorage.setItem('usuario_email', emailQuery);
+            localStorage.setItem('userEmail', emailQuery);
+            try { sessionStorage.setItem('emailRegistroVendedor', emailQuery); } catch (_) {}
             return emailQuery;
+        }
+
+        const cookie = document.cookie.match(/(?:^|;\s*)agro_email=([^;]*)/);
+        if (cookie && cookie[1]) {
+            const emailCookie = decodeURIComponent(cookie[1]).trim().toLowerCase();
+            if (emailCookie) {
+                localStorage.setItem('emailRegistroVendedor', emailCookie);
+                localStorage.setItem('usuario_email', emailCookie);
+                localStorage.setItem('userEmail', emailCookie);
+                try { sessionStorage.setItem('emailRegistroVendedor', emailCookie); } catch (_) {}
+                return emailCookie;
+            }
         }
 
         return (
             localStorage.getItem('emailRegistroVendedor') ||
             localStorage.getItem('usuario_email') ||
             localStorage.getItem('userEmail') ||
+            sessionStorage.getItem('emailRegistroVendedor') ||
             ''
         ).trim().toLowerCase();
     }
@@ -70,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('email_usuario', emailProceso);
         formData.append('imagen_producto', ultimaImagenSeleccionada);
 
-        const response = await fetch('/api/productos/agregar', {
+        const response = await fetch(`${API_BASE}/api/productos/agregar`, {
             method: 'POST',
             body: formData
         });
@@ -109,8 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const resultado = await guardarProductoEnServidor();
             if (!resultado.ok) return alert(`❌ ${resultado.data?.mensaje || 'No se pudo guardar el producto.'}`);
 
-            alert(' Producto guardado correctamente.');
-            window.location.href = '/pages/Agregar-Productos-Final/Agregar-Productos-Final.html';
+            alert('Producto guardado correctamente.');
+            const emailProceso = obtenerEmailProceso();
+            window.location.href =
+                `${API_BASE}/pages/Agregar-Productos-Final/Agregar-Productos-Final.html?email=${encodeURIComponent(emailProceso)}`;
         } catch (error) {
             console.error(error);
             alert('❌ Error de conexión con el servidor.');
